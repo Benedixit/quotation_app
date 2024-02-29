@@ -1,0 +1,159 @@
+{% load static %} {% load humanize %} {% load tailwindcss %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+      rel="stylesheet"
+    />
+
+    {% tailwindcss %}
+
+    <title>Calculator</title>
+  </head>
+  <body class="px-24">
+    <div class="flex flex-row gap-x-24 justify-center">
+      <div class="flex flex-col my-20">
+        {% include "init.html" %} 
+        {% include "preprod.html" %} 
+        {% include "prod.html" %} 
+        {% include "postprod.html" %} 
+        {% include "voice.html" %}
+      </div>
+
+      <div class="summary my-20"></div>
+    </div>
+    
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
+  <script>
+    $(document).ready(() => {
+      $(".form-input").change(() => {
+        calculateCost();
+      });
+
+      $(".submit-form").click(() => {
+        getForm();
+      });
+
+      $(".preproduction_btn_next").click(() => {
+        $(".preproduction").addClass("hidden");
+        $(".production").removeClass("hidden");
+      });
+
+      $(".preproduction_btn_prev").click(() => {
+        $(".preproduction").addClass("hidden");
+        $(".initialize").removeClass("hidden");
+      });
+
+      $(".init_next").click(() => {
+        $(".preproduction").removeClass("hidden");
+        $(".initialize").addClass("hidden");
+      });
+
+      $(".prod_btn_prev").click(() => {
+        $(".production").addClass("hidden");
+        $(".preproduction").removeClass("hidden");
+      });
+
+      $(".prod_btn_next").click(() => {
+        $(".production").addClass("hidden");
+        $(".postproduction").removeClass("hidden");
+      });
+
+      $(".sum_btn_prev").click(() => {
+        $(".voice").removeClass("hidden");
+        $(".get_price").addClass("hidden");
+      });
+
+      
+      $(".post_prod_btn_prev").click(() => {
+        $(".production").removeClass("hidden");
+        $(".postproduction").addClass("hidden");
+      });
+
+      $(".post_prod_btn_next").click(() => {
+        $(".postproduction").addClass("hidden");
+        $(".voice").removeClass("hidden");
+      });
+
+      $(".summary_prev_button").click(() => {
+        $(".voice").removeClass("hidden");
+        $(".get_price").addClass("hidden");
+      });
+
+      $(".voice_button_next").click(() => {
+        $(".voice").addClass("hidden");
+        $(".sub_summary").addClass("hidden");
+        $(".get_price").removeClass("hidden");
+      });
+
+      $(".voice_button_prev").click(() => {
+        $(".voice").addClass("hidden");
+        $(".postproduction").removeClass("hidden");
+      });
+
+    
+      const calculateCost = () => {
+        const variables = getFormValues();
+        variables['value_added_tax'] = $("input[name='value_added_tax']:checked").val()
+        console.log(variables)
+
+        $.ajax({
+          url: '{% url "accounts:summary" %}',
+          method: "GET",
+          data: variables,
+          traditional: true,
+          success: (data) => {
+            $(".summary").html(data);
+          },
+          error: (error) => {
+            console.log("There is an error with your JS code");
+          },
+        });
+      };
+
+      const getFormValues = () => {
+        const values = {};
+        $(".form-input").each((index, element) => {
+          values[$(element).attr("name")] = $(element).val();
+        });
+        return values;
+      };
+
+      const getForm = () => {
+        const variables = getPrices();
+
+        $.ajax({
+          url: '{% url "accounts:invoice" %}',
+          method: "POST",
+          data: variables,
+          traditional: true,
+          success: (data) => {
+            /**window.location.href = '{% url "accounts:success" %}'**/
+            console.log(data);
+          },
+          error: (error) => {
+            console.log("There is an error with your JS code");
+          },
+        });
+      };
+
+      const getPrices = () => {
+        const values = {};
+        $(".price").each((index, element) => {
+          values[$(element).attr("id")] = $(element).val();
+        });
+        return values;
+        console.log(values);
+      };
+
+      calculateCost();
+    });
+  </script>
+</html>
