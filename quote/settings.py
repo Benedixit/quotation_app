@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tiaos4%09b2ysbzj-0gv%+-cdkgds5*_$47o&rezvo-1$i=z68
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['5fa9-102-67-1-64.ngrok-free.app', '127.0.0.1']
 
 TAILWINDCSS_CLI_FILE = BASE_DIR / 'tailwindcss-windows-x64.exe'
 TAILWINDCSS_CONFIG_FILE = BASE_DIR / 'tailwind.config.js'
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'accounts',
+    'django_extensions',
     'tailwindcss',
 ]
 
@@ -138,3 +139,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+WKHTMLTOPDF_CMD = '.venv/Scripts/xhtml2pdf'
+

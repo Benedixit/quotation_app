@@ -40,8 +40,13 @@
       <input type="hidden" name="voiceover_price" value="{{ voiceover_price }}" id="voiceover_price" class="price">
       <input type="hidden" name="lighting_price" value="{{ lighting_price }}" id="lighting_price" class="price">
       <input type="hidden" name="rendering_price" value="{{ rendering_price }}" id="rendering_price" class="price">
+      <input type="hidden" name="voiceover_price" value="{{ audio_studio_price }}" id="audio_studio_price" class="price">
       <input type="hidden" name="audio_studio_price" value="{{ audio_studio_price }}" id="audio_studio_price" class="price">
       <input type="hidden" name="music_sync_price" value="{{ music_sync_price }}" id="music_sync_price" class="price">
+      <input type="hidden" name="total_sum" value="{{ total_sum }}" id="total_sum" class="price">
+      <input type="hidden" name="prod_mgt" value="{{ prod_mgt }}" id="prod_mgt" class="price">
+      <input type="hidden" name="vat_price" value="{{ vat_price }}" id="vat_price" class="price">
+      <input type="hidden" name="final_cost" value="{{ final_cost }}" id="final_cost" class="price">
       <!-- Add more hidden inputs as needed -->
       <div class="inline-flex mt-4">
         
@@ -77,7 +82,7 @@
                   
                 </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 moodboard_section">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     Moodboard
                 </th>
@@ -86,24 +91,24 @@
                   ₦{{ moodboard_price|floatformat:"2"|intcomma }}
                 </td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b illustration_section">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Storyboard
+                    Illustration
                 </th>
 
                 
                 
                 <td class="px-6 py-4">
-                  ₦{{ storyboard_price|floatformat:"2"|intcomma }}
+                  ₦{{ illustration_price|floatformat:"2"|intcomma }}
                 </td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b storyboard_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Illustration
+                  Storyboard
               </th>
               
               <td class="px-6 py-4">
-                ₦{{ illustration_price|floatformat:"2"|intcomma }}
+                ₦{{ storyboard_price|floatformat:"2"|intcomma }}
               </td>
             </tr>
 
@@ -116,7 +121,7 @@
                 
               </td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b modelling_section">
                   <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                       Modelling
                   </th>
@@ -128,7 +133,7 @@
                   </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b texturing_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 Texturing
               </th>
@@ -140,7 +145,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b rigging_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Rigging
               </th>
@@ -150,7 +155,7 @@
                 ₦{{ rigging_price|floatformat:"2"|intcomma }}
               </td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b animation_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Animation
               </th>
@@ -162,7 +167,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b lookdev_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Look Dev
               </th>
@@ -175,7 +180,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b layout_section">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     Layout & Blocking
                 </th>
@@ -186,7 +191,7 @@
                 </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b fx_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   FX
               </th>
@@ -198,7 +203,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b lighting_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Lighting
               </th>
@@ -210,7 +215,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b rendering_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Rendering
               </th>
@@ -232,7 +237,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b compositing_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Compositing
               </th>
@@ -243,7 +248,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b editing_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   Editing and Sound Effects
               </th>
@@ -254,7 +259,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b motion_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                  Motion Graphics
               </th>
@@ -277,7 +282,7 @@
             </tr>
 
             
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b voiceover_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                  Voiceover
               </th>
@@ -288,7 +293,7 @@
               </td>
             </tr>
             
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b music_sync_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                  Music Sync
               </th>
@@ -299,7 +304,7 @@
               </td>
             </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
+            <tr class="bg-white dark:bg-gray-800 border-b audio_studio_section">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                  Audio Studio Rental/Engr's fee
               </th>

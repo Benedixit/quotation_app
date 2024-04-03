@@ -3,14 +3,27 @@
     <h1 class="text-3xl font-bold text-red-600">Voice</h1>
   </div>
   <div class="voiceover flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Voice Talent</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Voiceover Talent</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="voiceover"
+          type="checkbox"
+          value="true"
+          name="voiceover"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm voiceover_text">Enable</span>
+      </div>
+    </div>
     <div class="flex flex-col gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
           <label
             class="block text-gray-700 text-sm font-bold mb-2"
             for="voiceover_salary">
-            Number of Days Needed
+            Voiceover Price(NGN)
           </label>
           <input
             name="voiceover_salary"
@@ -28,7 +41,20 @@
   </div>
 
   <div class="audio_studio flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Audio Studio</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Audio Studio</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="audio_studio"
+          type="checkbox"
+          value="true"
+          name="audio_studio"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm audio_studio_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -71,7 +97,20 @@
   </div>
 
   <div class="music_sync flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Music Sync</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Music Sync</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="music_sync"
+          type="checkbox"
+          value="true"
+          name="music_sync"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm music_sync_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">

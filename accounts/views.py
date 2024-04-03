@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Salaries, PriceDetail
-from django.db.models import Sum
+from num2words import num2words
 from django.http import HttpResponse
+import pdfkit
+from django.urls import reverse
+
+config = pdfkit.configuration(wkhtmltopdf='wkhtmltopdf/wkhtmltox/bin/wkhtmltopdf.exe')
 
 # Create your views here.
 def home(request):
@@ -249,8 +253,10 @@ def summary(request):
             vat_price = 0.00
 
         
+        total_sum = total_sum + prod_mgt
+        final_cost = total_sum + vat_price
 
-        final_cost = (total_sum + prod_mgt)*float(vat)
+        
 
         context = {
             'moodboard_price': moodboard_price,
@@ -303,12 +309,43 @@ def invoice_summary(request):
             fx_price=request.POST.get('fx_price'),
             lighting_price=request.POST.get('lighting_price'),
             rendering_price=request.POST.get('rendering_price'),
-                        
+            audio_studio_price=request.POST.get('audio_studio_price'),
+            music_sync_price=request.POST.get('music_sync_price'),
+            voiceover_price=request.POST.get('voiceover_price'),
+            total_sum=request.POST.get('total_sum'),
+            vat_price=request.POST.get('vat_price'),
+            prod_mgt=request.POST.get('prod_mgt'),
+            final_cost=request.POST.get('final_cost'),               
         )
         details.save()
-        return HttpResponse("Invoice summary page content")
+        return redirect(f'/invoices/{details.id}')
+    
+
+def invoice(request, pk):
+    data = PriceDetail.objects.get(pk=pk)
+    cost_in_words = num2words(round(float(data.final_cost)))
+    return render(request, 'gen_invoice.html', {'data': data, 'cost_in_words': cost_in_words})
+  
+
+
+def gen_invoice(request, pk):
+
+
+    pdf = pdfkit.from_url(request.build_absolute_uri(reverse("accounts:invoices", kwargs={'pk': pk})), False, configuration=config)
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename=file_name.pdf'
+    return response
+
+
+
 
 def success(request):
    
     return render(request, 'success.html')
 
+
+
+def settings(request):
+    salaries = Salaries.objects.all()
+    return render(request, 'settings.html', {'salaries': salaries})

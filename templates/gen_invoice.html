@@ -1,0 +1,625 @@
+{% load static %}
+{% load humanize %}
+{% load tailwindcss %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    {% tailwindcss %}
+</head>
+
+<body class="flex justify-center text-xs">
+
+    <div class="flex flex-col justify-center">
+        <div class="grid grid-cols-2 pb-8">
+            <div>
+
+            </div>
+            <div>
+                <img src="{% static 'img/top.png' %}" alt="" width="400px">
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-2 pb-8">
+            <div class="flex flex-col">
+                <img src="{% static 'img/logo.png' %}" alt="" width="80px" style="border-radius: 7px;">
+                <h1 class="text-2xl text-orange-500 mt-4">TO:</h1>
+                <p>{{ data.company_name }}</p>
+            </div>
+            <div class="flex flex-col text-right">
+                <ul>
+                    <li style="font-size: 10px;">Orange Visual Effects Limited</li>
+                    <li style="font-size: 10px;">36 Ajose Street, Lawanson Surulere, Lagos, Nigeria</li>
+                    <li style="font-size: 10px;">0803.646.5758 0814.771.9409</li>
+                    <li style="font-size: 10px;">info@orangevfx.com </li>
+                    <li style="font-size: 10px;">orangevisualeffects@gmail.com</li>
+                </ul>
+
+                <div class="pt-5">
+                    <h1 class="text-xl">PROFORMA INVOICE</h1>
+                    <p>PID # {{ data.invoice_id }}</p>
+                    <p>Date: 7 February, 2024</p>
+                </div>
+            </div>
+        </div>
+
+
+        <h1 class="uppercase font-bold my-6 text-center text-sm uppercase">PRODUCTION OF 30 SEC 3D ANIMATION FOR AIRTEL
+            (DIARY)</h1>
+
+        <div class="flex justify-center relative overflow-x-auto mx-5">
+            <table class="w-full text-xs text-left rtl:text-right dark:text-gray-400">
+                <thead class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <tr>
+                        <th scope="col" class="px-6 border-2 border-solid">
+                            S/N
+                        </th>
+                        <th scope="col" class="uppercase px-6 border-2 border-solid">
+                            Description of Element
+                        </th>
+                        <th scope="col" class="uppercase px-6 border-2 border-solid text-right">
+                            Amount(NGN)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+                            1
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Pre-production
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="border-2 border-solid font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Moodboard
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.moodboard_price != "0.0" %}                   
+                                {{ data.moodboard_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Illustration
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.illustration_price != "0.0" %}                   
+                                {{ data.illustration_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Storyboard, Animatic Design
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.storyboard_price != "0.0" %}                   
+                                {{ data.storyboard_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+
+                        </td>
+                    </tr>
+
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 py-2 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+
+
+
+                    <!---Production Part-->
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+                            2
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Production
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row" class="border-2 border-solid font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Modelling and Digital Sculpting
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.modelling_price != "0.0" %}                   
+                                {{ data.modelling_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Texturing
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {{ data.texturing_price|floatformat:"2"|intcomma }}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Rigging
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.rigging_price != 0.00 %}                   
+                                {{ data.rigging_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Look Development
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.lookdev_price != "0.0" %}                   
+                                {{ data.lookdev_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Layout + Blocking
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.layout_price != "0.0" %}                   
+                                {{ data.layout_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Animation
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.animation_price != 0.0 %}                   
+                                {{ data.animation_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                        {% endif %}
+
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            FX
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.fx_price == "0.0" %}                   
+                                <span>FREE</span>
+                            {% else %}
+                                {{ data.fx_price|floatformat:"2"|intcomma }}
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Lighting
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.lighting_price != "0.0" %}                   
+                                {{ data.lighting_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                                FREE
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Rendering
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.rendering_price != "0.0" %}                   
+                            {{ data.rendering_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+
+
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+                            3
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Post-production
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Editing + Sound Effects (with free cut-downs)
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.editing_price != "0.0" %}                   
+                            {{ data.editing_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Compositing
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.compositing_price != "0.0" %}                   
+                            {{ data.compositing_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Motion Graphics
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.motion_price != "0.0" %}                   
+                            {{ data.motion_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+
+
+                    <tr class=" dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+
+
+                    <tr class="text-gray-700 bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            4
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Sound
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Voice talent/editing
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.voiceover_price != "0.0" %}                   
+                            {{ data.voiceover_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Studio rental (audio)
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {{ data.audio_studio_price|floatformat:"2"|intcomma }}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-white dark:bg-gray-800">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Music/motion-graphic synchronization
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.music_sync_price != "0.0" %}                   
+                            {{ data.music_sync_price|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            5
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Production Management
+                        </td>
+
+                        <td class="border-2 border-solid px-6">
+
+                        </td>
+                    </tr>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid px-6">
+                            Creative Handling & Production Management
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {% if data.prod_mgt != "0.0" %}                   
+                            {{ data.prod_mgt|floatformat:"2"|intcomma }}
+                        {% else %}
+                            FREE
+                        {% endif %}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid font-medium px-6">
+                            Subtotal
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {{ data.total_sum|floatformat:"2"|intcomma }}
+                        </td>
+                    </tr>
+
+
+
+                    <tr class="dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid font-medium px-6">
+                            7.5% VAT
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {{ data.vat_price|floatformat:"2"|intcomma }}
+                        </td>
+                    </tr>
+
+                    <tr class="bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <th scope="row"
+                            class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                        </th>
+                        <td class="border-2 border-solid font-medium px-6">
+                            GRAND TOTAL
+                        </td>
+
+                        <td class="border-2 border-solid px-6 text-right">
+                            {{ data.final_cost|floatformat:"2"|intcomma }}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-gray-700 text-right py-8">
+            <h1 class="text-2xl font-bold">Total Cost: ₦{{ data.final_cost|floatformat:"2"|intcomma }}</h1>
+            <p style="font-size: 10px;">{{ cost_in_words|capfirst }} Naira</p>
+        </div>
+
+
+        <ul class="pb-8">
+            <li><span class="text-orange-500 font-bold">Payment Methods:</span> Cash, Cheque, Transfer</li>
+            <li>Account Name: ORANGE VISUAL EFFECTS LIMITED</li>
+            <li>GTBank: 0260239078 (Naira) Sort Code: 058152094</li>
+            <li>Tax Identification Number 20557467-0001</li>
+        </ul>
+
+        <div class="flex flex-col justify-center pb-2">
+            <h1 class="text-2xl font-bold text-left pb-4 text-orange-500">Thank you for your business</h1>
+            <p style="font-size: 10px; width: 750px; line-height: 12px;"><b>TERMS:</b> This document is valid for 30 days. We kindly request a
+                minimum prepayment of 30% to start the project. The remaining balance will be divided into
+                instalments, invoiced upon the
+                completion of specific milestones and the delivery of the final video. All scripts must be finalized
+                and approved in writing or by email before work can begin. Once a script is approved and production
+                has commenced, further changes/additions might incur extra costs and affect the delivery timelines
+                according to the required work. The first, second and third cuts will be rendered low at 960 by 540
+                resolution, and the fourth and final cut at high definition. The first five (5) revisions are free,
+                and extra revisions might be charged based on the additional work requirements. Only footage and
+                photographs will be provided upon request. Requests for native work/project files will incur an
+                extra cost.</p>
+        </div>
+
+        <div style="width: 800px; height: 34px; background-color: #ff7f00;">
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

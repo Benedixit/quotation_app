@@ -16,6 +16,7 @@ class Salaries(models.Model):
         return self.task
     
 class PriceDetail(models.Model):
+
     company_name = models.CharField(max_length=500)
 
     invoice_id = models.CharField(max_length=50, default="500")
@@ -50,11 +51,45 @@ class PriceDetail(models.Model):
 
     rendering_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
 
-    voiceover_salary = models.IntegerField(default=0, blank=True, null=True)
+    voiceover_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
 
     audio_studio_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
 
     music_sync_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
+    
+    prod_mgt = models.CharField(max_length=100, default="FREE", blank=True, null=True)
+
+    total_sum = models.CharField(max_length=100, default="FREE", blank=True, null=True)
+
+    vat_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
+
+    final_cost = models.CharField(max_length=100, default="FREE", blank=True, null=True)
+
+
 
     def __str__(self):
         return f"{self.company_name} - Invoice: {self.invoice_id}"
+    
+
+class PriceInclude(models.Model):
+
+    moodboard = models.BooleanField(default=True)
+    illustration = models.BooleanField(default=True)
+    storyboard = models.BooleanField(default=True)
+    compositing = models.BooleanField(default=True)
+    editing = models.BooleanField(default=True)
+    motion = models.BooleanField(default=True)
+    modelling = models.BooleanField(default=True)
+    texturing = models.BooleanField(default=True)
+    rigging = models.BooleanField(default=True)
+    animation = models.BooleanField(default=True)
+    fx = models.BooleanField(default=True)
+    lighting = models.BooleanField(default=True)
+    rendering = models.BooleanField(default=True)
+    voiceover = models.BooleanField(default=True)
+    music_sync = models.BooleanField(default=True)
+    audio_studio = models.BooleanField(default=True)
+    layout = models.BooleanField(default=True)
+    lookdev = models.BooleanField(default=True)
+    price_detail = models.OneToOneField("PriceDetail", on_delete=models.CASCADE, default=None)
+    

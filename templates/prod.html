@@ -3,7 +3,20 @@
     <h1 class="text-3xl font-bold text-red-600">Production</h1>
   </div>
   <div class="modelling flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Modelling</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Modelling</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="modelling"
+          type="checkbox"
+          value="true"
+          name="modelling"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm modelling_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -30,7 +43,20 @@
   </div>
 
   <div class="texturing flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Texturing</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Texturing</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="texturing"
+          type="checkbox"
+          value="true"
+          name="texturing"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm texturing_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -57,7 +83,20 @@
   </div>
 
   <div class="rigging flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Rigging</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Rigging</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="rigging"
+          type="checkbox"
+          value="true"
+          name="rigging"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm rigging_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -84,7 +123,20 @@
   </div>
 
   <div class="animation flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Animation</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Animation</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="animation"
+          type="checkbox"
+          value="true"
+          name="animation"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm animation_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -100,7 +152,7 @@
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="animation_artists">
-            Number of Days Needed
+            Number of Artists
           </label>
           <input name="animation_artists" min="0" value="0" id="animation_artists"
             class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -111,7 +163,20 @@
   </div>
 
   <div class="lookdev flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Look Dev</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Lookdev</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="lookdev"
+          type="checkbox"
+          value="true"
+          name="lookdev"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm lookdev_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -127,9 +192,9 @@
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="lookdev_artists">
-            Number of Days Needed
+            Number of Artists
           </label>
-          <input name="lookdev_artists" min="0" value="0" id="lookdev_days"
+          <input name="lookdev_artists" min="0" value="0" id="lookdev_artists"
             class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             type="number" />
         </div>
@@ -138,7 +203,20 @@
   </div>
 
   <div class="layout flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Layout and Blocking</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Layout & Blocking</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="layout"
+          type="checkbox"
+          value="true"
+          name="layout"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm layout_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -165,7 +243,20 @@
   </div>
 
   <div class="fx flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">FX</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">FX</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="fx"
+          type="checkbox"
+          value="true"
+          name="fx"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm fx_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -192,7 +283,20 @@
   </div>
 
   <div class="lighting flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Lighting</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Lighting</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="lighting"
+          type="checkbox"
+          value="true"
+          name="lighting"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm lighting_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
@@ -219,7 +323,20 @@
   </div>
 
   <div class="rendering flex flex-col gap-y-4">
-    <h1 class="text-lg font-bold">Rendering</h1>
+    <div class="flex flex-col">
+      <h1 class="text-lg font-bold pb-4">Rendering</h1>
+      <div class="flex flex-row">
+        <input
+          checked
+          id="rendering"
+          type="checkbox"
+          value="true"
+          name="rendering"
+          class="includes w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark: focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+        />
+        <span class="pl-2 text-sm rendering_text">Enable</span>
+      </div>
+    </div>
     <div class="grid grid-flow-col auto-cols-max gap-x-24">
       <div class="flex flex-col gap-y-2">
         <div class="mb-4">
