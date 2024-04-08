@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Salaries, PriceDetail
+from .models import Salaries, PriceDetail, PriceInclude
 from num2words import num2words
 from django.http import HttpResponse
 import pdfkit
@@ -12,8 +12,45 @@ def home(request):
     return render(request, 'index.html')
 
 def summary(request):
+
+    
         
     if request.method == 'GET' and request.headers.get('X_REQUESTED_WITH') == 'XMLHttpRequest':
+
+        if not Salaries.objects.filter(task="Moodboard").exists():
+            Salaries.objects.create(task="Moodboard", salary=400000.00)
+        if not Salaries.objects.filter(task="Storyboard").exists():
+            Salaries.objects.create(task="Storyboard", salary=500000.00)
+        if not Salaries.objects.filter(task="Illustration").exists():
+            Salaries.objects.create(task="Illustration", salary=500000.00)
+        if not Salaries.objects.filter(task="Compositing").exists():
+            Salaries.objects.create(task="Compositing", salary=500000.00)
+        if not Salaries.objects.filter(task="Editing").exists():
+            Salaries.objects.create(task="Editing", salary=500000.00)
+        if not Salaries.objects.filter(task="Motion Graphics").exists():
+            Salaries.objects.create(task="Motion Graphics", salary=500000.00)
+        if not Salaries.objects.filter(task="Texturing").exists():
+            Salaries.objects.create(task="Texturing", salary=500000.00)
+        if not Salaries.objects.filter(task="Animation").exists():
+            Salaries.objects.create(task="Animation", salary=600000.00)
+        if not Salaries.objects.filter(task="Rigging").exists():
+            Salaries.objects.create(task="Rigging", salary=400000.00)
+        if not Salaries.objects.filter(task="Lookdev").exists():
+            Salaries.objects.create(task="Lookdev", salary=500000.00)
+        if not Salaries.objects.filter(task="FX").exists():
+            Salaries.objects.create(task="FX", salary=500000.00)
+        if not Salaries.objects.filter(task="Layout").exists():
+            Salaries.objects.create(task="Layout", salary=500000.00)
+        if not Salaries.objects.filter(task="Lighting").exists():
+            Salaries.objects.create(task="Lighting", salary=500000.00)
+        if not Salaries.objects.filter(task="Rendering").exists():
+            Salaries.objects.create(task="Rendering", salary=500000.00)
+        if not Salaries.objects.filter(task="Audio_studio").exists():
+            Salaries.objects.create(task="Audio_studio", salary=500000.00)
+        if not Salaries.objects.filter(task="Music_sync").exists():
+            Salaries.objects.create(task="Music_sync", salary=500000.00)
+        if not Salaries.objects.filter(task="Modelling").exists():
+            Salaries.objects.create(task="Modelling", salary=500000.00)
 
         # Gets number of artists and days in the Preproduction code
         moodboard_days = request.GET.get('moodboard_days')
@@ -312,6 +349,22 @@ def summary(request):
             'company_name': company_name,
             'invoice_title': invoice_title,
             'company_location': company_location,
+            'moodboard': moodboard,
+            'motion': motion,
+            'modelling': modelling,
+            'texturing': texturing,
+            'rigging': rigging,
+            'animation': animation,
+            'fx': fx,
+            'lighting': lighting,
+            'voiceover': voiceover,
+            'music_sync': music_sync,
+            'audio_studio': audio_studio,
+            'layout': layout,
+            'lookdev': lookdev,
+            'storyboard': storyboard,
+            'illustration': illustration,
+            'compositing': compositing,
             
         }
 
@@ -325,6 +378,8 @@ def invoice_summary(request):
         details = PriceDetail(
             company_name = request.POST.get('company_name'),
             invoice_id = request.POST.get('invoice_id'),
+            invoice_title = request.POST.get('invoice_title'),
+            company_location = request.POST.get('company_location'),
             moodboard_price=request.POST.get('moodboard_price'),
             illustration_price=request.POST.get('illustration_price'),
             storyboard_price=request.POST.get('storyboard_price'),
@@ -349,13 +404,38 @@ def invoice_summary(request):
             final_cost=request.POST.get('final_cost'),               
         )
         details.save()
+        includes = PriceInclude(
+            moodboard = bool(request.POST.get('moodboard')),
+            motion = bool(request.POST.get('motion')),
+            modelling = bool(request.POST.get('modelling')),
+            texturing = bool(request.POST.get('texturing')),
+            rigging = bool(request.POST.get('rigging')),
+            animation = bool(request.POST.get('animation')),
+            fx = bool(request.POST.get('fx')),
+            lighting = bool(request.POST.get('lighting')),
+            voiceover = bool(request.POST.get('voiceover')),
+            music_sync = bool(request.POST.get('music_sync')),
+            audio_studio = bool(request.POST.get('audio_studio')),
+            layout = bool(request.POST.get('layout')),
+            lookdev = bool(request.POST.get('lookdev')),
+            illustration = bool(request.POST.get('illustration')),
+            storyboard = bool(request.POST.get('storyboard')),
+            compositing = bool(request.POST.get('compositing')),
+            price_detail = PriceDetail.objects.get(pk=details.id)
+        )
+
+        includes.save()
         return redirect(f'/invoices/{details.id}')
     
 
 def invoice(request, pk):
     data = PriceDetail.objects.get(pk=pk)
+    include_data = PriceInclude.objects.get(price_detail=pk)
     cost_in_words = num2words(round(float(data.final_cost)))
-    return render(request, 'gen_invoice.html', {'data': data, 'cost_in_words': cost_in_words})
+    context = {'data': data, 
+               'include_data': include_data, 
+               'cost_in_words': cost_in_words}
+    return render(request, 'gen_invoice.html', context)
   
 
 

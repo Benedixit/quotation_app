@@ -48,14 +48,8 @@ INSTALLED_APPS = [
     'accounts',
     'django_extensions',
     'tailwindcss',
-    'compressor',
 ]
 
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
-
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,8 +87,12 @@ WSGI_APPLICATION = 'quote.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'defaultdb',
+        'USER': 'avnadmin',
+        'PASSWORD': 'AVNS_M1HzqhmUykoQNbbExO_',
+        'HOST': 'pg-3195576e-invoicestack-9ec9.a.aivencloud.com',
+        'PORT': '19405'
     }
 }
 

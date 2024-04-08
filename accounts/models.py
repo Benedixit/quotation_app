@@ -15,11 +15,18 @@ class Salaries(models.Model):
     def __str__(self):
         return self.task
     
+
+
+
 class PriceDetail(models.Model):
 
     company_name = models.CharField(max_length=500)
 
-    invoice_id = models.CharField(max_length=50, default="500")
+    invoice_id = models.CharField(max_length=50)
+
+    invoice_title = models.CharField(max_length=255)
+
+    company_location = models.CharField(max_length=255)
 
     moodboard_price = models.CharField(max_length=100, default="FREE", blank=True, null=True)
 
@@ -93,3 +100,6 @@ class PriceInclude(models.Model):
     lookdev = models.BooleanField(default=True)
     price_detail = models.OneToOneField("PriceDetail", on_delete=models.CASCADE, default=None)
     
+    
+    def __str__(self):
+        return f'{self.price_detail}'
