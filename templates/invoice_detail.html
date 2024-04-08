@@ -1,32 +1,27 @@
 <div class="invoice_detail hidden flex flex-col gap-y-4 py-4">
   <h1 class="text-lg font-bold">DETAILS</h1>
-  <div class="flex flex-col gap-x-24">
-    <div class="flex flex-col gap-y-2">
-      <p class="italic">Company Name</p>
-      <input
-        type="text"
-        name="company_name"
-        id="company_name"
-        class="detail border-2 border-orange-300 py-2 pr-48"
-        placeholder=""
-      />
-    </div>
-    <div class="flex flex-col gap-y-2">
-      <p class="italic">Invoice ID</p>
-      <input
-        type="text"
-        name="invoice_id"
-        id="invoice_id"
-        class="detail border-2 border-orange-300 py-2 pr-48"
-        placeholder=""
-      />
-    </div>
+  <div class="flex flex-col gap-y-4">
 
-    <div class="mt-10">
-      
-      <button type="submit" value="Submit" class="bg-[#ff7f00] px-4 py-2 text-white font-bold submit-form">
-        Submit
-      </button> 
-      </div>
+    <input name="invoice_id" placeholder="Invoice ID" id="invoice_id"
+      class="price shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      type="text" />
+    <input name="company_name" placeholder="Company Name" id="company_name"
+      class="price shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      type="text" />
+
+    <input name="company_location" placeholder="Company Location" id="company_location"
+      class="price shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      type="text" />
+
+    <select id="invoice_type"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option selected>Choose Invoice Type</option>
+        <option value="US">Proforma Invoice</option>
+        <option value="CA">Invoice</option>
+        <option value="FR">Quote</option>
+      </select>
+
+
+
   </div>
 </div>

@@ -25,6 +25,7 @@
       {% include "prod.html" %}
       {% include "postprod.html" %}
       {% include "voice.html" %}
+      {% include "invoice_detail.html" %}
     </div>
 
     <div class="summary my-20"></div>
@@ -51,6 +52,7 @@
     };
 
     const includes = getIncludes()
+    
 
     $("#moodboard").on('change', () => {
       if ($("#moodboard").is(':checked')) {
@@ -74,6 +76,9 @@
         $("#moodboard_days").removeClass('shadow');
         $("#moodboard_artists").removeClass('shadow');
         $(".moodboard_section").addClass('hidden')
+        $("input[name='moodboard_days']").val('0')
+        $("input[name='moodboard_artists']").val('0')
+        
       }
       includes["moodboard"] = ($("#moodboard").val())
     });
@@ -100,6 +105,8 @@
         $("#illustration_days").removeClass('shadow');
         $("#illustration_artists").removeClass('shadow');
         $(".illustration_section").addClass('hidden')
+        $("input[name='illustration_days']").val('0')
+        $("input[name='illustration_artists']").val('0')
       }
 
       includes["moodboard"] = ($("#moodboard").val())
@@ -128,9 +135,11 @@
         $("#modelling_days").removeClass('shadow');
         $("#modelling_artists").removeClass('shadow');
         $(".modelling_section").addClass('hidden');
+        $("input[name='modelling_days']").val('0')
+        $("input[name='modelling_artists']").val('0')
       }
       includes["modelling"] = ($("#modelling").val());
-      console.log(variables);
+      
     });
 
     $("#rigging").on('change', () => {
@@ -154,8 +163,10 @@
         $("#rigging_days").removeClass('shadow');
         $("#rigging_artists").removeClass('shadow');
         $(".rigging_section").addClass('hidden');
+        $("input[name='rigging_days']").val('0')
+        $("input[name='rigging_artists']").val('0')
       }
-      variables["rigging"] = ($("#rigging").val());
+      includes["rigging"] = ($("#rigging").val());
     });
 
     $("#storyboard").on('change', () => {
@@ -179,6 +190,8 @@
         $("#storyboard_days").removeClass('shadow');
         $("#storyboard_artists").removeClass('shadow');
         $(".storyboard_section").addClass('hidden');
+        $("input[name='storyboard_days']").val('0')
+        $("input[name='storyboard_artists']").val('0')
       }
       includes["storyboard"] = ($("#storyboard").val());
 
@@ -206,9 +219,11 @@
         $("#texturing_days").removeClass('shadow');
         $("#texturing_artists").removeClass('shadow');
         $(".texturing_section").addClass('hidden');
+        $("input[name='texturing_days']").val('0')
+        $("input[name='texturing_artists']").val('0')
+        
       }
       includes["texturing"] = ($("#texturing").val());
-      console.log(includes);
     });
 
     $("#lookdev").on('change', () => {
@@ -232,6 +247,8 @@
         $("#lookdev_days").removeClass('shadow');
         $("#lookdev_artists").removeClass('shadow');
         $(".lookdev_section").addClass('hidden');
+        $("input[name='lookdev_days']").val('0')
+        $("input[name='lookdev_artists']").val('0')
       }
       includes["lookdev"] = ($("#lookdev").val());
     });
@@ -258,6 +275,8 @@
         $("#layout_days").removeClass('shadow');
         $("#layout_artists").removeClass('shadow');
         $(".layout_section").addClass('hidden');
+        $("input[name='layout_days']").val('0')
+        $("input[name='layout_artists']").val('0')
       }
       includes["layout"] = ($("#layout").val());
     });
@@ -283,6 +302,8 @@
         $("#animation_days").removeClass('shadow');
         $("#animation_artists").removeClass('shadow');
         $(".animation_section").addClass('hidden');
+        $("input[name='animation_days']").val('0')
+        $("input[name='animation_artists']").val('0')
       }
       includes["animation"] = ($("#animation").val());
     });
@@ -308,6 +329,8 @@
         $("#lighting_days").removeClass('shadow');
         $("#lighting_artists").removeClass('shadow');
         $(".lighting_section").addClass('hidden');
+        $("input[name='lighting_days']").val('0')
+        $("input[name='lighting_artists']").val('0')
       }
       includes["lighting"] = ($("#lighting").val());
     });
@@ -333,6 +356,8 @@
         $("#rendering_days").removeClass('shadow');
         $("#rendering_artists").removeClass('shadow');
         $(".rendering_section").addClass('hidden');
+        $("input[name='rendering_days']").val('0')
+        $("input[name='rendering_artists']").val('0')
       }
       includes["rendering"] = ($("#rendering").val());
     });
@@ -359,6 +384,8 @@
         $("#fx_days").removeClass('shadow');
         $("#fx_artists").removeClass('shadow');
         $(".fx_section").addClass('hidden');
+        $("input[name='fx_days']").val('0')
+        $("input[name='fx_artists']").val('0')
       }
       includes["fx"] = ($("#fx").val());
     });
@@ -384,6 +411,8 @@
         $("#compositing_days").removeClass('shadow');
         $("#compositing_artists").removeClass('shadow');
         $(".compositing_section").addClass('hidden');
+        $("input[name='compositing_days']").val('0')
+        $("input[name='compositing_artists']").val('0')
       }
       includes["compositing"] = ($("#compositing").val());
     });
@@ -409,6 +438,8 @@
         $("#audio_studio_days").removeClass('shadow');
         $("#audio_studio_artists").removeClass('shadow');
         $(".audio_studio_section").addClass('hidden');
+        $("input[name='audio_studio_days']").val('0')
+        $("input[name='audio_studio_artists']").val('0')
       }
       includes["audio_studio"] = ($("#audio_studio").val());
     });
@@ -434,6 +465,8 @@
         $("#music_sync_days").removeClass('shadow');
         $("#music_sync_artists").removeClass('shadow');
         $(".music_sync_section").addClass('hidden');
+        $("input[name='music_sync_days']").val('0')
+        $("input[name='music_sync_artists']").val('0')
       }
       includes["music_sync"] = ($("#music_sync").val());
     });
@@ -460,6 +493,8 @@
         $("#editing_days").removeClass('shadow');
         $("#editing_artists").removeClass('shadow');
         $(".editing_section").addClass('hidden');
+        $("input[name='editing_days']").val('0')
+        $("input[name='editing_artists']").val('0')
       }
       includes["editing"] = ($("#editing").val());
     });
@@ -485,6 +520,8 @@
         $("#motion_days").removeClass('shadow');
         $("#motion_artists").removeClass('shadow');
         $(".motion_section").addClass('hidden');
+        $("input[name='motion_days']").val('0')
+        $("input[name='motion_artists']").val('0')
       }
       includes["motion"] = ($("#motion").val());
     });
@@ -504,6 +541,8 @@
         $("#voiceover_salary").addClass('border-gray-200 text-red-200 placeholder-red-200');
         $("#voiceover_salary").removeClass('shadow');
         $(".voiceover_section").addClass('hidden');
+        $("input[name='voiceover_days']").val('0')
+        $("input[name='voiceover_artists']").val('0')
       }
       includes["voiceover"] = ($("#voiceover").val());
     });
@@ -521,16 +560,6 @@
   
     });
 
-    $(".prod_equipment_prev").click(()=> {
-      $(".preproduction").removeClass("hidden");
-      $(".prod_equipment").addClass("hidden");
-    })
-
-    $(".prod_equipment_next").click(()=> {
-      $(".production").removeClass("hidden");
-      $(".prod_equipment").addClass("hidden");
-    })
-
     $(".preproduction_btn_prev").click(() => {
       $(".preproduction").addClass("hidden");
       $(".initialize").removeClass("hidden");
@@ -541,7 +570,7 @@
       $(".initialize").addClass("hidden");
     });
 
-
+  
     $(".prod_btn_prev").click(() => {
       $(".production").addClass("hidden");
       $(".preproduction").removeClass("hidden");  
@@ -576,7 +605,7 @@
     $(".voice_button_next").click(() => {
       $(".voice").addClass("hidden");
       $(".sub_summary").addClass("hidden");
-      $(".get_price").removeClass("hidden");
+      $(".invoice_detail").removeClass("hidden");
     });
 
     $(".voice_button_prev").click(() => {
@@ -587,10 +616,9 @@
 
 
     const calculateCost = () => {
-      const variables = getFormValues();
+      const variables = getFormValues()
       variables['value_added_tax'] = $("input[name='value_added_tax']:checked").val()
-      console.log(variables)
-
+     
       $.ajax({
         url: '{% url "accounts:summary" %}',
         method: "GET",
@@ -614,12 +642,12 @@
     };
 
     const getForm = () => {
-      const variables = getPrices();
+      const prices = getPrices();
 
       $.ajax({
         url: '{% url "accounts:invoice" %}',
         method: "POST",
-        data: variables,
+        data: prices,
         traditional: true,
         success: (data) => {
           /**window.location.href = '{% url "accounts:success" %}'**/
