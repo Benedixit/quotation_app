@@ -3,7 +3,7 @@
 
 <div class="summary grid grid-cols-2">
   <div id="static-modal" data-modal-backdrop="static" 
-  tabindex="-1" aria-hidden="true" class="hidden px-36 overflow-y-auto overflow-x-hidden fixed top-0 
+  tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 
   right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -19,7 +19,7 @@
     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">It’s not rocket science, really! We love what we do. We are very well structured and fuse a personal approach and attention to detail with convenience and customer peace of mind. Orange VFX has been helping advertising houses, and companies produce cutting-edge animation for all sorts of stuff. From the conception of a project, we bring a creative and technological problem-solving approach to our client’s business challenges. We engage our audience through ground-breaking visual experiences driven by insight and innovation. Today, 
       clients increasingly realize the advantages of using animation to bring magic to their marketing messages.</p>
   </div>
-    <form method="post" action="{% url 'accounts:invoice' %}" class="pl-4 pb-4">
+    <form method="post" action="{% url 'accounts:invoice' %}">
       {% csrf_token %}
       <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
       <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price" class="price">
@@ -44,6 +44,23 @@
       <input type="hidden" name="prod_mgt" value="{{ prod_mgt }}" id="prod_mgt" class="price">
       <input type="hidden" name="vat_price" value="{{ vat_price }}" id="vat_price" class="price">
       <input type="hidden" name="final_cost" value="{{ final_cost }}" id="final_cost" class="price">
+      <input type="hidden" name="moodboard" value="{{ moodboard }}" id="moodboard" class="price">
+      <input type="hidden" name="motion" value="{{ motion }}" id="motion" class="price">
+      <input type="hidden" name="modelling" value="{{ modelling }}" id="modelling" class="price">
+      <input type="hidden" name="texturing" value="{{ texturing }}" id="texturing" class="price">
+      <input type="hidden" name="rigging" value="{{ rigging }}" id="rigging" class="price">
+      <input type="hidden" name="animation" value="{{ animation }}" id="animation" class="price">
+      <input type="hidden" name="fx" value="{{ fx }}" id="fx" class="price">
+      <input type="hidden" name="lighting" value="{{ lighting }}" id="lighting" class="price">
+      <input type="hidden" name="voiceover" value="{{ voiceover }}" id="voiceover" class="price">
+      <input type="hidden" name="music_sync" value="{{ music_sync }}" id="music_sync" class="price">
+      <input type="hidden" name="audio_studio" value="{{ audio_studio }}" id="audio_studio" class="price">
+      <input type="hidden" name="layout" value="{{ layout }}" id="layout" class="price">
+      <input type="hidden" name="lookdev" value="{{ lookdev }}" id="lookdev" class="price">
+      <input type="hidden" name="storyboard" value="{{ storyboard }}" id="storyboard" class="price">
+      <input type="hidden" name="illustration" value="{{ illustration }}" id="illustration" class="price">
+      <input type="hidden" name="compositing" value="{{ compositing }}" id="compositing" class="price">
+
       <!-- Add more hidden inputs as needed -->
       <div class="inline-flex mt-4">
         

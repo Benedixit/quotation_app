@@ -619,7 +619,9 @@
     const calculateCost = () => {
       const variables = getFormValues()
       variables['value_added_tax'] = $("input[name='value_added_tax']:checked").val()
-      variables['includes'] = includes
+      for (const [key, value] of Object.entries(includes)) {
+        variables[key] = value
+      }
       console.log(variables)
       $.ajax({
         url: '{% url "accounts:summary" %}',

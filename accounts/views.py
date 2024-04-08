@@ -67,6 +67,24 @@ def summary(request):
 
 
 
+        moodboard = request.GET.get('moodboard')
+        illustration = request.GET.get('illustration')
+        storyboard = request.GET.get('storyboard')
+        compositing = request.GET.get('compositing')
+        motion = request.GET.get('motion')
+        modelling = request.GET.get('modelling')
+        texturing = request.GET.get('texturing')
+        rigging = request.GET.get('rigging')
+        animation = request.GET.get('animation')
+        fx = request.GET.get('fx')
+        lighting = request.GET.get('lighting')
+        voiceover = request.GET.get('voiceover')
+        music_sync = request.GET.get('music_sync')
+        audio_studio = request.GET.get('audio_studio')
+        layout = request.GET.get('layout')
+        lookdev = request.GET.get('lookdev')
+
+
         # Get salaries for the Preproduction tasks
         moodboard_salary = (Salaries.objects.get(task="Moodboard").salary)/19
         illustration_salary = (Salaries.objects.get(task="Illustration").salary)/19
@@ -293,9 +311,8 @@ def summary(request):
             'invoice_id': invoice_id,
             'company_name': company_name,
             'invoice_title': invoice_title,
-            'company_location': company_location
+            'company_location': company_location,
             
-
         }
 
         
