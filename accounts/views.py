@@ -60,6 +60,13 @@ def summary(request):
 
 
 
+        company_name = request.GET.get('company_name')
+        invoice_id = request.GET.get('invoice_id')
+        invoice_title = request.GET.get('invoice_title')
+        company_location = request.GET.get('company_location')
+
+
+
         # Get salaries for the Preproduction tasks
         moodboard_salary = (Salaries.objects.get(task="Moodboard").salary)/19
         illustration_salary = (Salaries.objects.get(task="Illustration").salary)/19
@@ -85,6 +92,8 @@ def summary(request):
         audio_studio_salary = (Salaries.objects.get(task="Audio_studio").salary)/19
         music_sync_salary = (Salaries.objects.get(task="Music_sync").salary)/19
         voiceover_salary = request.GET.get("voiceover_salary")
+
+        
 
 
 
@@ -280,7 +289,12 @@ def summary(request):
             'total_sum': total_sum,
             'prod_mgt': prod_mgt,
             'final_cost': final_cost,
-            'vat_price': vat_price
+            'vat_price': vat_price,
+            'invoice_id': invoice_id,
+            'company_name': company_name,
+            'invoice_title': invoice_title,
+            'company_location': company_location
+            
 
         }
 

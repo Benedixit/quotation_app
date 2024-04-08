@@ -2,28 +2,25 @@
 {% load humanize %}
 
 <div class="summary grid grid-cols-2">
-  <div class="get_price hidden bg-green-200 border-xl p-48">
-    <form method="post" action="{% url 'accounts:invoice' %}">
-      <h1 class="text-xl font-bold mb-4 text-red-600">Add Invoice Details</h1>
+  <div id="static-modal" data-modal-backdrop="static" 
+  tabindex="-1" aria-hidden="true" class="hidden px-36 overflow-y-auto overflow-x-hidden fixed top-0 
+  right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+      <h3 class="text-xl font-semibold text-red-600">Generate Invoice</h3>
+      <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
+          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+          </svg>
+          <span class="sr-only">Close modal</span>
+      </button>
+  </div>
+  <div class="space-y-4 p-4">
+    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">It’s not rocket science, really! We love what we do. We are very well structured and fuse a personal approach and attention to detail with convenience and customer peace of mind. Orange VFX has been helping advertising houses, and companies produce cutting-edge animation for all sorts of stuff. From the conception of a project, we bring a creative and technological problem-solving approach to our client’s business challenges. We engage our audience through ground-breaking visual experiences driven by insight and innovation. Today, 
+      clients increasingly realize the advantages of using animation to bring magic to their marketing messages.</p>
+  </div>
+    <form method="post" action="{% url 'accounts:invoice' %}" class="pl-4 pb-4">
       {% csrf_token %}
-      <div class="flex flex-col gap-y-4">
-       
-        <input
-        name="invoice_id"
-        placeholder="Invoice ID"
-        id="invoice_id"
-        class="price shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type="text"
-      />
-      <input
-      name="company_name"
-      placeholder="Company Name"
-      id="invoice_id"
-      class="price shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      type="text"
-    />
-    
-      </div>
       <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
       <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price" class="price">
       <input type="hidden" name="storyboard_price" value="{{ storyboard_price }}" id="storyboard_price" class="price">
@@ -57,6 +54,7 @@
         </button>
       </div>
     </form>
+  </div>
   </div>
   
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
