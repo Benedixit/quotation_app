@@ -438,7 +438,7 @@ def invoice(request, pk):
     return render(request, 'gen_invoice.html', context)
   
 
-
+"""
 def gen_invoice(request, pk):
 
 
@@ -446,7 +446,7 @@ def gen_invoice(request, pk):
 
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename=file_name.pdf'
-    return response
+    return response"""
 
 
 
