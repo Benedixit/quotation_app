@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Salaries, PriceDetail, PriceInclude
 from num2words import num2words
-from django.http import HttpResponse
-import pdfkit
-from django.urls import reverse
 
-config = pdfkit.configuration(wkhtmltopdf='wkhtmltopdf/wkhtmltox/bin/wkhtmltopdf.exe')
 
 # Create your views here.
 def home(request):
