@@ -23,10 +23,5 @@
         "src": "/static/(.*)",
         "dest": "/static/$1"
       }
-    ],
-    "functions": {
-      "api/**/*.py": {
-        "runtime": "python3.9"
-      }
-    }
+    ]
   }
