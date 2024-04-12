@@ -11,6 +11,8 @@ env/
 .vscode/
 .idea/
 
+.github/
+
 # Editor temporary files
 *~
 

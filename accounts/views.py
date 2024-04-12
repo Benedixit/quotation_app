@@ -367,7 +367,7 @@ def summary(request):
         
         
         
-        return render(request, 'summary.html', context)
+        return render(request, 'others/summary.html', context)
     
 def invoice_summary(request):
     if request.method == 'POST':

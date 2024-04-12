@@ -1,48 +1,23 @@
-{% load static %}
-{% load humanize %}
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style type="text/tailwindcss">
-    @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-    }
-  </style>
+{% extends 'others/base.html' %}
 
 
-  <title>Calculator</title>
-</head>
-
-<body class="px-24">
-
-  {% include "navbar.html" %}
-
+{% block content %}
+  {% include "others/navbar.html" %}
   <div class="flex flex-row gap-x-24 justify-center">
     <div class="flex flex-col my-20">
-      {% include "init.html" %}
-      {% include "preprod.html" %}
-      {% include "prod.html" %}
-      {% include "postprod.html" %}
-      {% include "voice.html" %}
-      {% include "invoice_detail.html" %}
+      {% include "others/init.html" %}
+      {% include "tasks/preprod.html" %}
+      {% include "tasks/prod.html" %}
+      {% include "tasks/postprod.html" %}
+      {% include "tasks/voice.html" %}
+      {% include "others/invoice_detail.html" %}
     </div>
 
-    <div class="summary my-20"></div>
+    <div class="summary my-20 bg-blue-200"></div>
   </div>
+{% endblock %}
 
-</body>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
+{% block script_block %}
 <script>
   $(document).ready(() => {
     $(".form-input").change(() => {
@@ -684,4 +659,8 @@
   });
 </script>
 
-</html>
+{% endblock  %}
+
+
+
+
