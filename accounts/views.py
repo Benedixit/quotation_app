@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Salaries, PriceDetail, PriceInclude
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate, login
 from num2words import num2words
 
 
@@ -295,9 +297,8 @@ def summary(request):
         if int(voiceover_salary) > 0:
             voiceover_price = (float(voiceover_salary)*1.25*1.2)
         else:
-            voiceover_price = 0.00
-        
-        
+            voiceover_price = 0.00  
+
 
         total_sum = (moodboard_price + illustration_price + storyboard_price +
              compositing_price + editing_price + motion_price +
@@ -314,9 +315,7 @@ def summary(request):
 
         
         total_sum = total_sum + prod_mgt
-        final_cost = total_sum + vat_price
-
-        
+        final_cost = total_sum + vat_price        
 
         context = {
             'moodboard_price': moodboard_price,
@@ -444,11 +443,36 @@ def gen_invoice(request, pk):
     response['Content-Disposition'] = f'attachment; filename=file_name.pdf'
     return response"""
 
+def user_registration(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username = username, password = password)
+            login(request, user, backend='accounts.authentication.EmailOrUsernameModelBackend')
+            return redirect("/")
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'users/registration.html', {'form': form})
 
+
+def user_login(request):
+    if request.method == 'POST':
+        username_or_email = request.POST.get('username_or_email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username_or_email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('success_url')
+        else:
+            return render(request, 'users/login.html', {'error': 'Invalid username or password.'})
+    else:
+        return render(request, 'users/login.html')
 
 
 def success(request):
-   
     return render(request, 'success.html')
 
 

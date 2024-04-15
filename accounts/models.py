@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Cost(models.Model):
     overhead_cost = models.DecimalField(max_digits=15, decimal_places=2)
 
@@ -14,8 +13,6 @@ class Salaries(models.Model):
 
     def __str__(self):
         return self.task
-    
-
 
 
 class PriceDetail(models.Model):

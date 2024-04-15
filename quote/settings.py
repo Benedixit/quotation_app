@@ -67,6 +67,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'quote.urls'
 
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.authentication.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

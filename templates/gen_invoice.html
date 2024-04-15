@@ -487,7 +487,7 @@
                         </td>
                     </tr>
 
-                    {% if include_data.voiceover == "true" %}
+                    {% if include_data.voiceover == True %}
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -500,14 +500,14 @@
                         <td class="border-2 border-solid px-6 text-right">
                             {% if data.voiceover_price != "0.0" %}                   
                             {{ data.voiceover_price|floatformat:"2"|intcomma }}
-                        {% else %}
+                            {% else %}
                             FREE
-                        {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
                     {% endif %}
 
-                    {% if include_data.audio_studio == "true" %}
+                    {% if include_data.audio_studio == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -518,7 +518,11 @@
                         </td>
 
                         <td class="border-2 border-solid px-6 text-right">
+                            {% if data.voiceover_price != "0.0" %} 
                             {{ data.audio_studio_price|floatformat:"2"|intcomma }}
+                            {% else %}
+                            FREE
+                            {% endif %}
                         </td>
                     </tr>
                     {% endif %}

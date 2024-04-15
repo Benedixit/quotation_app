@@ -2,379 +2,367 @@
 {% load humanize %}
 
 <div class="summary">
-  <div id="static-modal" data-modal-backdrop="static" 
-  tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 
-  right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-  <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-      <h3 class="text-xl font-semibold text-red-600">Generate Invoice</h3>
-      <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="static-modal">
-          <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-          </svg>
-          <span class="sr-only">Close modal</span>
-      </button>
-  </div>
-  <div class="space-y-4 p-4">
-    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">It’s not rocket science, really! We love what we do. We are very well structured and fuse a personal approach and attention to detail with convenience and customer peace of mind. Orange VFX has been helping advertising houses, and companies produce cutting-edge animation for all sorts of stuff. From the conception of a project, we bring a creative and technological problem-solving approach to our client’s business challenges. We engage our audience through ground-breaking visual experiences driven by insight and innovation. Today, 
-      clients increasingly realize the advantages of using animation to bring magic to their marketing messages.</p>
-  </div>
-    <form method="post" action="{% url 'accounts:invoice' %}">
-      {% csrf_token %}
-      <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
-      <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price" class="price">
-      <input type="hidden" name="storyboard_price" value="{{ storyboard_price }}" id="storyboard_price" class="price">
-      <input type="hidden" name="compositing_price" value="{{ compositing_price }}" id="compositing_price" class="price">
-      <input type="hidden" name="editing_price" value="{{ editing_price }}" id="editing_price" class="price">
-      <input type="hidden" name="motion_price" value="{{ motion_price }}" id="motion_price" class="price">
-      <input type="hidden" name="texturing_price" value="{{ texturing_price }}" id="texturing_price" class="price">
-      <input type="hidden" name="animation_price" value="{{ animation_price }}" id="animation_price" class="price">
-      <input type="hidden" name="rigging_price" value="{{ rigging_price }}" id="rigging_price" class="price">
-      <input type="hidden" name="lookdev_price" value="{{ lookdev_price }}" id="lookdev_price" class="price">
-      <input type="hidden" name="fx_price" value="{{ fx_price }}" id="fx_price" class="price">
-      <input type="hidden" name="modelling_price" value="{{ modelling_price }}" id="modelling_price" class="price">
-      <input type="hidden" name="layout_price" value="{{ layout_price }}" id="layout_price" class="price">
-      <input type="hidden" name="voiceover_price" value="{{ voiceover_price }}" id="voiceover_price" class="price">
-      <input type="hidden" name="lighting_price" value="{{ lighting_price }}" id="lighting_price" class="price">
-      <input type="hidden" name="rendering_price" value="{{ rendering_price }}" id="rendering_price" class="price">
-      <input type="hidden" name="voiceover_price" value="{{ audio_studio_price }}" id="audio_studio_price" class="price">
-      <input type="hidden" name="audio_studio_price" value="{{ audio_studio_price }}" id="audio_studio_price" class="price">
-      <input type="hidden" name="music_sync_price" value="{{ music_sync_price }}" id="music_sync_price" class="price">
-      <input type="hidden" name="total_sum" value="{{ total_sum }}" id="total_sum" class="price">
-      <input type="hidden" name="prod_mgt" value="{{ prod_mgt }}" id="prod_mgt" class="price">
-      <input type="hidden" name="vat_price" value="{{ vat_price }}" id="vat_price" class="price">
-      <input type="hidden" name="final_cost" value="{{ final_cost }}" id="final_cost" class="price">
-      <input type="hidden" name="moodboard" value="{{ moodboard }}" id="moodboard" class="price">
-      <input type="hidden" name="motion" value="{{ motion }}" id="motion" class="price">
-      <input type="hidden" name="modelling" value="{{ modelling }}" id="modelling" class="price">
-      <input type="hidden" name="texturing" value="{{ texturing }}" id="texturing" class="price">
-      <input type="hidden" name="rigging" value="{{ rigging }}" id="rigging" class="price">
-      <input type="hidden" name="animation" value="{{ animation }}" id="animation" class="price">
-      <input type="hidden" name="fx" value="{{ fx }}" id="fx" class="price">
-      <input type="hidden" name="lighting" value="{{ lighting }}" id="lighting" class="price">
-      <input type="hidden" name="voiceover" value="{{ voiceover }}" id="voiceover" class="price">
-      <input type="hidden" name="music_sync" value="{{ music_sync }}" id="music_sync" class="price">
-      <input type="hidden" name="audio_studio" value="{{ audio_studio }}" id="audio_studio" class="price">
-      <input type="hidden" name="layout" value="{{ layout }}" id="layout" class="price">
-      <input type="hidden" name="lookdev" value="{{ lookdev }}" id="lookdev" class="price">
-      <input type="hidden" name="storyboard" value="{{ storyboard }}" id="storyboard" class="price">
-      <input type="hidden" name="illustration" value="{{ illustration }}" id="illustration" class="price">
-      <input type="hidden" name="compositing" value="{{ compositing }}" id="compositing" class="price">
-      <input type="hidden" name="invoice_id" value="{{ invoice_id }}" id="invoice_id" class="price">
-      <input type="hidden" name="company_location" value="{{ company_location }}" id="company_location" class="price">
-      <input type="hidden" name="invoice_title" value="{{ invoice_title }}" id="invoice_title" class="price">
-      <input type="hidden" name="company_name" value="{{ company_name }}" id="company_name" class="price">
-
-
-      <!-- Add more hidden inputs as needed -->
-      <div class="inline-flex mt-4">
-        
-        <button type="submit"
-          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
-        >
-          Submit
-        </button>
+    <div class="end_of_line hidden rounded-lg bg-yellow-200">
+      <div class="space-y-4 p-4">
+        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          If everything is okay, you can click on the submit button. <br> However,
+          you can go back to previous sections if you are unsure.
+        </p>
       </div>
-    </form>
-  </div>
-  </div>
-  
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Task
-                </th>
-              
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                    Preproduction
-                </th>
-             
-                </td>
-                <td class="px-6 py-4">
-                  
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 moodboard_section">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Moodboard
-                </th>
-                
-                <td class="px-6 py-4">
-                  ₦{{ moodboard_price|floatformat:"2"|intcomma }}
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b illustration_section">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Illustration
-                </th>
+      <form method="post" action="{% url 'accounts:invoice' %}">
+        {% csrf_token %}
+        <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
+        <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price"
+          class="price">
+        <input type="hidden" name="storyboard_price" value="{{ storyboard_price }}" id="storyboard_price" class="price">
+        <input type="hidden" name="compositing_price" value="{{ compositing_price }}" id="compositing_price"
+          class="price">
+        <input type="hidden" name="editing_price" value="{{ editing_price }}" id="editing_price" class="price">
+        <input type="hidden" name="motion_price" value="{{ motion_price }}" id="motion_price" class="price">
+        <input type="hidden" name="texturing_price" value="{{ texturing_price }}" id="texturing_price" class="price">
+        <input type="hidden" name="animation_price" value="{{ animation_price }}" id="animation_price" class="price">
+        <input type="hidden" name="rigging_price" value="{{ rigging_price }}" id="rigging_price" class="price">
+        <input type="hidden" name="lookdev_price" value="{{ lookdev_price }}" id="lookdev_price" class="price">
+        <input type="hidden" name="fx_price" value="{{ fx_price }}" id="fx_price" class="price">
+        <input type="hidden" name="modelling_price" value="{{ modelling_price }}" id="modelling_price" class="price">
+        <input type="hidden" name="layout_price" value="{{ layout_price }}" id="layout_price" class="price">
+        <input type="hidden" name="voiceover_price" value="{{ voiceover_price }}" id="voiceover_price" class="price">
+        <input type="hidden" name="lighting_price" value="{{ lighting_price }}" id="lighting_price" class="price">
+        <input type="hidden" name="rendering_price" value="{{ rendering_price }}" id="rendering_price" class="price">
+        <input type="hidden" name="voiceover_price" value="{{ audio_studio_price }}" id="audio_studio_price"
+          class="price">
+        <input type="hidden" name="audio_studio_price" value="{{ audio_studio_price }}" id="audio_studio_price"
+          class="price">
+        <input type="hidden" name="music_sync_price" value="{{ music_sync_price }}" id="music_sync_price" class="price">
+        <input type="hidden" name="total_sum" value="{{ total_sum }}" id="total_sum" class="price">
+        <input type="hidden" name="prod_mgt" value="{{ prod_mgt }}" id="prod_mgt" class="price">
+        <input type="hidden" name="vat_price" value="{{ vat_price }}" id="vat_price" class="price">
+        <input type="hidden" name="final_cost" value="{{ final_cost }}" id="final_cost" class="price">
+        <input type="hidden" name="moodboard" value="{{ moodboard }}" id="moodboard" class="price">
+        <input type="hidden" name="motion" value="{{ motion }}" id="motion" class="price">
+        <input type="hidden" name="modelling" value="{{ modelling }}" id="modelling" class="price">
+        <input type="hidden" name="texturing" value="{{ texturing }}" id="texturing" class="price">
+        <input type="hidden" name="rigging" value="{{ rigging }}" id="rigging" class="price">
+        <input type="hidden" name="animation" value="{{ animation }}" id="animation" class="price">
+        <input type="hidden" name="fx" value="{{ fx }}" id="fx" class="price">
+        <input type="hidden" name="lighting" value="{{ lighting }}" id="lighting" class="price">
+        <input type="hidden" name="voiceover" value="{{ voiceover }}" id="voiceover" class="price">
+        <input type="hidden" name="music_sync" value="{{ music_sync }}" id="music_sync" class="price">
+        <input type="hidden" name="audio_studio" value="{{ audio_studio }}" id="audio_studio" class="price">
+        <input type="hidden" name="layout" value="{{ layout }}" id="layout" class="price">
+        <input type="hidden" name="lookdev" value="{{ lookdev }}" id="lookdev" class="price">
+        <input type="hidden" name="storyboard" value="{{ storyboard }}" id="storyboard" class="price">
+        <input type="hidden" name="illustration" value="{{ illustration }}" id="illustration" class="price">
+        <input type="hidden" name="compositing" value="{{ compositing }}" id="compositing" class="price">
+        <input type="hidden" name="invoice_id" value="{{ invoice_id }}" id="invoice_id" class="price">
+        <input type="hidden" name="company_location" value="{{ company_location }}" id="company_location" class="price">
+        <input type="hidden" name="invoice_title" value="{{ invoice_title }}" id="invoice_title" class="price">
+        <input type="hidden" name="company_name" value="{{ company_name }}" id="company_name" class="price">
 
-                
-                
-                <td class="px-6 py-4">
-                  ₦{{ illustration_price|floatformat:"2"|intcomma }}
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b storyboard_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Storyboard
-              </th>
-              
-              <td class="px-6 py-4">
-                ₦{{ storyboard_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                  Production
-              </th>
-              
-              <td class="px-6 py-4">
-                
-              </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b modelling_section">
-                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                      Modelling
-                  </th>
+        <!-- Add more hidden inputs as needed -->
+        <div class="inline-flex mt-4">
+          <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
 
-                 
-                  
-                  <td class="px-6 py-4">
-                    ₦{{ modelling_price|floatformat:"2"|intcomma }}
-                  </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b texturing_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Texturing
-              </th>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 summary_table">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Task
+        </th>
 
-              
-              
-              <td class="px-6 py-4">
-                ₦{{ texturing_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <th scope="col" class="px-6 py-3">
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+          Preproduction
+        </th>
 
-            <tr class="bg-white dark:bg-gray-800 border-b rigging_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Rigging
-              </th>
+        </td>
+        <td class="px-6 py-4">
 
-              
-              <td class="px-6 py-4">
-                ₦{{ rigging_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800 border-b animation_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Animation
-              </th>
+        </td>
+      </tr>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 moodboard_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Moodboard
+        </th>
 
-              
-              
-              <td class="px-6 py-4">
-                ₦{{ animation_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ moodboard_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800 border-b illustration_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Illustration
+        </th>
 
-            <tr class="bg-white dark:bg-gray-800 border-b lookdev_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Look Dev
-              </th>
 
-              
-              </td>
-              
-              <td class="px-6 py-4">
-                ₦{{ lookdev_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b layout_section">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Layout & Blocking
-                </th>
+        <td class="px-6 py-4">
+          ₦{{ illustration_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800 border-b storyboard_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Storyboard
+        </th>
 
-                
-                <td class="px-6 py-4">
-                  ₦{{ layout_price|floatformat:"2"|intcomma }}
-                </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ storyboard_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b fx_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  FX
-              </th>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 production_section">
+        <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+          Production
+        </th>
 
-              
-              
-              <td class="px-6 py-4">
-                ₦{{ fx_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <td class="px-6 py-4">
 
-            <tr class="bg-white dark:bg-gray-800 border-b lighting_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Lighting
-              </th>
+        </td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800 border-b modelling_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Modelling
+        </th>
 
-            
-              
-              <td class="px-6 py-4">
-                ₦{{ lighting_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b rendering_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Rendering
-              </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ rendering_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ modelling_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
-              <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                  Post-Production
-              </th>
+      <tr class="bg-white dark:bg-gray-800 border-b texturing_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Texturing
+        </th>
 
-              
-              <td class="px-6 py-4">
-               
-              </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b compositing_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Compositing
-              </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ compositing_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ texturing_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b editing_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Editing and Sound Effects
-              </th>
+      <tr class="bg-white dark:bg-gray-800 border-b rigging_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Rigging
+        </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ editing_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b motion_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                 Motion Graphics
-              </th>
+        <td class="px-6 py-4">
+          ₦{{ rigging_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800 border-b animation_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Animation
+        </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ motion_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
-              <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                  Voice
-              </th>
 
-              
-              <td class="px-6 py-4">
-               
-              </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ animation_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-            
-            <tr class="bg-white dark:bg-gray-800 border-b voiceover_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                 Voiceover
-              </th>
+      <tr class="bg-white dark:bg-gray-800 border-b lookdev_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Look Dev
+        </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ voiceover_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
-            
-            <tr class="bg-white dark:bg-gray-800 border-b music_sync_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                 Music Sync
-              </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ music_sync_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        </td>
 
-            <tr class="bg-white dark:bg-gray-800 border-b audio_studio_section">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                 Audio Studio Rental/Engr's fee
-              </th>
+        <td class="px-6 py-4">
+          ₦{{ lookdev_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ audio_studio_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+      <tr class="bg-white dark:bg-gray-800 border-b layout_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Layout & Blocking
+        </th>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
-              <th scope="row" class="px-6 py-4 font-medium text-lg text-gray-900 whitespace-nowrap dark:text-white">
-                 Production Management/Creative Directing
-              </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ prod_mgt|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
+        <td class="px-6 py-4">
+          ₦{{ layout_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
 
-            <tr class="bg-white dark:bg-gray-800 border-b">
-              <th scope="row" class="px-6 py-4 font-medium text-lg text-gray-900 whitespace-nowrap dark:text-white">
-                 7.5% VAT
-              </th>
+      <tr class="bg-white dark:bg-gray-800 border-b fx_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          FX
+        </th>
 
-              
-              <td class="px-6 py-4">
-                ₦{{ vat_price|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
 
-            <tfoot class="bg-white dark:bg-gray-800 border-b bg-gray-200">
-              <tr>
-              <th scope="row" class="px-6 py-4 font-medium text-lg text-red-600 text-gray-900 whitespace-nowrap dark:text-white">
-                 Total Cost
-              </th>
 
-              
-              <td class="px-6 py-4 text-lg">
-                ₦{{ final_cost|floatformat:"2"|intcomma }}
-              </td>
-            </tr>
-            </tfoot>
-    </table>
+        <td class="px-6 py-4">
+          ₦{{ fx_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b lighting_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Lighting
+        </th>
+
+
+
+        <td class="px-6 py-4">
+          ₦{{ lighting_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b rendering_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Rendering
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ rendering_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b postprod_section">
+        <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+          Post-Production
+        </th>
+
+
+        <td class="px-6 py-4">
+
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b compositing_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Compositing
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ compositing_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b editing_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Editing and Sound Effects
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ editing_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b motion_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Motion Graphics
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ motion_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b voice_section">
+        <th scope="row" class="px-6 py-4 font-bold text-xl text-gray-900 whitespace-nowrap dark:text-white">
+          Voice
+        </th>
+
+
+        <td class="px-6 py-4">
+
+        </td>
+      </tr>
+
+
+      <tr class="bg-white dark:bg-gray-800 border-b voiceover_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Voiceover
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ voiceover_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b music_sync_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Music Sync
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ music_sync_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b audio_studio_section">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Audio Studio Rental/Engr's fee
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ audio_studio_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b">
+        <th scope="row" class="px-6 py-4 font-medium text-lg text-gray-900 whitespace-nowrap dark:text-white">
+          Production Management/Creative Directing
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ prod_mgt|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+      <tr class="bg-white dark:bg-gray-800 border-b">
+        <th scope="row" class="px-6 py-4 font-medium text-lg text-gray-900 whitespace-nowrap dark:text-white">
+          7.5% VAT
+        </th>
+
+
+        <td class="px-6 py-4">
+          ₦{{ vat_price|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+
+    <tfoot class="bg-white dark:bg-gray-800 border-b bg-gray-200">
+      <tr>
+        <th scope="row"
+          class="px-6 py-4 font-medium text-lg text-red-600 text-gray-900 whitespace-nowrap dark:text-white">
+          Total Cost
+        </th>
+
+
+        <td class="px-6 py-4 text-lg">
+          ₦{{ final_cost|floatformat:"2"|intcomma }}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 
 
 
 </div>
-
-
-
-

@@ -11,8 +11,8 @@ urlpatterns = [
     path('summary', v.summary, name="summary"),
     path('invoice', v.invoice_summary, name="invoice"),
     path('success', v.success, name="success"),
-    #path('generate/<int:pk>', v.gen_invoice, name="gen_invoice"),
     path('invoices/<int:pk>', v.invoice, name="invoices"), 
     path('settings', v.settings, name="settings"),
-    
+    path('login', v.user_login, name="login"),
+    path('register', v.user_registration, name="register"),
 ]
