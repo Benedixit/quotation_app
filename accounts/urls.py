@@ -2,8 +2,6 @@ from django.contrib import admin
 from django.urls import path
 from . import views as v
 
-
-
 app_name = "accounts"
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -15,4 +13,5 @@ urlpatterns = [
     path('settings', v.settings, name="settings"),
     path('login', v.user_login, name="login"),
     path('register', v.user_registration, name="register"),
+    path('logout', v.logout_view, name="logout")
 ]

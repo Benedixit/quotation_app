@@ -1,18 +1,19 @@
 from django.shortcuts import render, redirect
 from .models import Salaries, PriceDetail, PriceInclude
 from .forms import CustomUserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from num2words import num2words
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required()
 def home(request):
     return render(request, 'index.html')
 
-def summary(request):
 
-    
-        
+@login_required()
+def summary(request):
     if request.method == 'GET' and request.headers.get('X_REQUESTED_WITH') == 'XMLHttpRequest':
 
         if not Salaries.objects.filter(task="Moodboard").exists():
@@ -452,7 +453,7 @@ def user_registration(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username = username, password = password)
             login(request, user, backend='accounts.authentication.EmailOrUsernameModelBackend')
-            return redirect("/")
+            return redirect("home")
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/registration.html', {'form': form})
@@ -460,8 +461,8 @@ def user_registration(request):
 
 def user_login(request):
     if request.method == 'POST':
-        username_or_email = request.POST.get('username_or_email')
-        password = request.POST.get('password')
+        username_or_email = request.POST.get['username_or_email']
+        password = request.POST.get['password']
         user = authenticate(request, username=username_or_email, password=password)
         if user is not None:
             login(request, user)
@@ -470,6 +471,10 @@ def user_login(request):
             return render(request, 'users/login.html', {'error': 'Invalid username or password.'})
     else:
         return render(request, 'users/login.html')
+    
+def logout_view(request):
+    logout(request)
+    return redirect('login')
 
 
 def success(request):
