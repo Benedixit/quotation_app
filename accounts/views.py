@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  get_object_or_404
+from django.urls import reverse
 from .models import Salaries, PriceDetail, PriceInclude
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, PriceDetailForm
 from django.contrib.auth import authenticate, login, logout
 from num2words import num2words
 from django.contrib.auth.decorators import login_required
@@ -9,13 +10,31 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required()
 def home(request):
-    return render(request, 'index.html')
+    prices = PriceDetail.objects.all()
+    return render(request, 'index.html', {'prices': prices})
+
+
+@login_required()
+def create_invoice(request):
+    return render(request, 'invoice/create.html')
+
+@login_required()
+def edit_invoice(request, pk):
+    instance = get_object_or_404(PriceDetail, pk=pk)
+    if request.method == 'POST':
+        form = PriceDetailForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = PriceDetailForm(instance=instance)
+    
+    return render(request, 'invoice/edit.html', {'form': form})
 
 
 @login_required()
 def summary(request):
     if request.method == 'GET' and request.headers.get('X_REQUESTED_WITH') == 'XMLHttpRequest':
-
         if not Salaries.objects.filter(task="Moodboard").exists():
             Salaries.objects.create(task="Moodboard", salary=400000.00)
         if not Salaries.objects.filter(task="Storyboard").exists():
@@ -369,7 +388,7 @@ def summary(request):
         
         return render(request, 'others/summary.html', context)
     
-def invoice_summary(request):
+def get_invoice_data(request):
     if request.method == 'POST':
         details = PriceDetail(
             company_name = request.POST.get('company_name'),
@@ -421,18 +440,19 @@ def invoice_summary(request):
         )
 
         includes.save()
-        return redirect(f'/invoices/{details.id}')
+        return redirect(reverse('accounts:home'))
     
 
-def invoice(request, pk):
+def invoice_data(request, pk):
     data = PriceDetail.objects.get(pk=pk)
-    include_data = PriceInclude.objects.get(price_detail=pk)
+    include_data = PriceInclude.objects.get(price_detail=data.id)
     cost_in_words = num2words(round(float(data.final_cost)))
     context = {'data': data, 
                'include_data': include_data, 
                'cost_in_words': cost_in_words}
-    return render(request, 'gen_invoice.html', context)
-  
+    
+    return render(request, 'invoice/generate.html', context)
+
 
 """
 def gen_invoice(request, pk):
@@ -445,6 +465,9 @@ def gen_invoice(request, pk):
     return response"""
 
 def user_registration(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('accounts:home'))
+    
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -453,20 +476,23 @@ def user_registration(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username = username, password = password)
             login(request, user, backend='accounts.authentication.EmailOrUsernameModelBackend')
-            return redirect("home")
+            return redirect(reverse('accounts:home'))
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/registration.html', {'form': form})
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect(reverse('accounts:home'))
+    
     if request.method == 'POST':
-        username_or_email = request.POST.get['username_or_email']
-        password = request.POST.get['password']
+        username_or_email = request.POST.get('username_or_email')
+        password = request.POST.get('password')
         user = authenticate(request, username=username_or_email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('success_url')
+            return redirect(reverse('accounts:login'))
         else:
             return render(request, 'users/login.html', {'error': 'Invalid username or password.'})
     else:
@@ -474,14 +500,7 @@ def user_login(request):
     
 def logout_view(request):
     logout(request)
-    return redirect('login')
-
+    return redirect(reverse('accounts:login'))
 
 def success(request):
     return render(request, 'success.html')
-
-
-
-def settings(request):
-    salaries = Salaries.objects.all()
-    return render(request, 'settings.html', {'salaries': salaries})

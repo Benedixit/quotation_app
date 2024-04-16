@@ -9,7 +9,7 @@
           you can go back to previous sections if you are unsure.
         </p>
       </div>
-      <form method="post" action="{% url 'accounts:invoice' %}">
+      <form method="post" action="{% url 'accounts:get_invoice_data' %}">
         {% csrf_token %}
         <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
         <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price"

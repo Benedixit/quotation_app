@@ -156,3 +156,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login'
+
+SESSIONS_ENGINE='django.contrib.sessions.backends.cache'
+servers = os.getenv('MEMCACHIER_SERVERS')
+username = os.getenv('MEMCACHIER_USERNAME')
+password = os.getenv('MEMCACHIER_PASSWORD')
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_bmemcached.memcached.BMemcached",
+        "LOCATION": "mc2.dev.ec2.memcachier.com:11211",
+        'OPTIONS': {
+            'username': username,
+            'password': password,
+        }
+    }
+}
