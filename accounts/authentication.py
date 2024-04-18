@@ -1,23 +1,25 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
 
-User = get_user_model()
 
-class EmailOrUsernameModelBackend(object):
+class CustomAuthBackend(object):    
     def authenticate(self, request, username=None, password=None):
+        UserModel = get_user_model()
         try:
-            user = User.objects.get(email=username)
-        except User.DoesNotExist:
-            try:
-                user = User.objects.get(username=username)
-            except User.DoesNotExist:
-                return None
+            user = UserModel.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
+        except UserModel.DoesNotExist:
+            UserModel().set_password(password)
+        except UserModel.MultipleObjectsReturned:
+            user = UserModel.objects.filter(Q(username__iexact=username) | Q(email__iexact=username)).order_by('id').first()
 
-        if user.check_password(password):
+        if user.check_password(password) and user.is_active:
             return user
-        return None
-
+    
     def get_user(self, user_id):
+        UserModel = get_user_model()
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return UserModel.objects.get(pk=user_id)
+        except UserModel.DoesNotExist:
             return None
+        
+    

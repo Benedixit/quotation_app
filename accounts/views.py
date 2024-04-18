@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.urls import reverse
 from .models import Salaries, PriceDetail, PriceInclude
-from .forms import CustomUserCreationForm, PriceDetailForm
+from .forms import RegistrationForm, PriceDetailForm
 from django.contrib.auth import authenticate, login, logout
 from num2words import num2words
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -454,6 +455,14 @@ def invoice_data(request, pk):
     return render(request, 'invoice/generate.html', context)
 
 
+def delete_invoice(request, pk):
+    data = get_object_or_404(PriceDetail, pk=pk)
+    if request.method == 'POST':
+        PriceInclude.objects.filter(price_detail=data).delete()
+        data.delete()
+        return redirect(reverse('accounts:home'))
+    return render(request, 'invoice/delete.html', {'data': data})
+
 """
 def gen_invoice(request, pk):
 
@@ -465,21 +474,20 @@ def gen_invoice(request, pk):
     return response"""
 
 def user_registration(request):
-    if request.user.is_authenticated:
-        return redirect(reverse('accounts:home'))
-    
+    form = RegistrationForm()
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
+            form.save(commit=False)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
             form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username = username, password = password)
-            login(request, user, backend='accounts.authentication.EmailOrUsernameModelBackend')
-            return redirect(reverse('accounts:home'))
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'users/registration.html', {'form': form})
+            user = authenticate(username=username, password=password)
+            if user is not None:      
+                login(request, user)
+                return redirect(reverse('accounts:home'))
+        
+    return render(request, 'auth/registration.html', {'form': form})
 
 
 def user_login(request):
@@ -494,9 +502,9 @@ def user_login(request):
             login(request, user)
             return redirect(reverse('accounts:login'))
         else:
-            return render(request, 'users/login.html', {'error': 'Invalid username or password.'})
+            return render(request, 'auth/login.html', {'error': 'Invalid username or password.'})
     else:
-        return render(request, 'users/login.html')
+        return render(request, 'auth/login.html')
     
 def logout_view(request):
     logout(request)

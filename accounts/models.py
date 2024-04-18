@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 
 class Cost(models.Model):
     overhead_cost = models.DecimalField(max_digits=15, decimal_places=2)
@@ -14,14 +16,15 @@ class Salaries(models.Model):
     def __str__(self):
         return self.task
 
-
 class PriceDetail(models.Model):
 
-    company_name = models.CharField(max_length=500)
+    company_name = models.CharField(max_length=500, blank=False)
 
-    invoice_id = models.CharField(max_length=50)
+    invoice_id = models.CharField(max_length=50, unique=True, blank=False)
 
-    invoice_title = models.CharField(max_length=255)
+    invoice_title = models.CharField(max_length=255, blank=False)
+
+    invoice_date = models.DateField(default=timezone.now)
 
     company_location = models.CharField(max_length=255)
 
@@ -100,3 +103,6 @@ class PriceInclude(models.Model):
     
     def __str__(self):
         return f'{self.price_detail}'
+    
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)

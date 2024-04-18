@@ -41,7 +41,7 @@ TAILWINDCSS_OUTPUT_FILE = 'style.css'
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -69,9 +69,10 @@ ROOT_URLCONF = 'quote.urls'
 
 
 AUTHENTICATION_BACKENDS = [
-    'accounts.authentication.EmailOrUsernameModelBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    'accounts.authentication.CustomAuthBackend'
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 TEMPLATES = [
     {
@@ -102,6 +103,7 @@ DATABASES = {
         'PASSWORD': os.getenv('PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+        'CONN_MAX_AGE': 300,
     }
 }
 

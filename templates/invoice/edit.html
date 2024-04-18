@@ -1,12 +1,12 @@
 {% extends 'others/base.html' %} 
-
+{% block title %}Edit Invoice{% endblock %}
 {% block content %}
 {% include "others/navbar.html" %}
-
+<main>
 <form class="max-w-3xl mx-auto pt-12 h-[80vh]" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <h1 class="mb-10 text-3xl font-bold text-red-500 gap-x-16">Edit Invoice</h1>
-    <div class="grid grid-cols-2">
+    <div class="grid grid-cols-2 gap-x-8">
         {% for field in form %}
         <div class="mb-4">
             <label for="{{ field.id_for_label }}" class="block text-sm uppercase font-medium mb-2">{{ field.label }}</label>
@@ -18,6 +18,9 @@
 
     <input type="submit" class="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" value="Submit">
 </form>
+</main>
 
-{% include "others/footer.html" %}
+
+
+
 {% endblock %}
