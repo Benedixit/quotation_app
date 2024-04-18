@@ -7,13 +7,14 @@ class CustomAuthBackend(object):
         UserModel = get_user_model()
         try:
             user = UserModel.objects.get(Q(username__iexact=username) | Q(email__iexact=username))
+            if user.check_password(password):
+                return user
         except UserModel.DoesNotExist:
             UserModel().set_password(password)
         except UserModel.MultipleObjectsReturned:
             user = UserModel.objects.filter(Q(username__iexact=username) | Q(email__iexact=username)).order_by('id').first()
 
-        if user.check_password(password) and user.is_active:
-            return user
+        
     
     def get_user(self, user_id):
         UserModel = get_user_model()
