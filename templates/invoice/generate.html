@@ -19,27 +19,26 @@
     </style>
 </head>
 
-<body class="flex justify-center text-xs">
+<body>
 
-    <div class="flex flex-col justify-center">
-        <div class="grid grid-cols-2 pb-8">
-            <div>
-
+    <div class="flex items-center text-xs">
+        <div class="flex flex-col">
+        <div class="flex pb-8">
+            <div class="w-1/2">
             </div>
-            <div>
-                <img src="{% static 'img/top.png' %}" alt="" width="400px">
+            <div class="-mr-2 w-1/2">
+                <img src="{% static 'img/top.png' %}" alt="" class="w-full">
             </div>
-
         </div>
 
-        <div class="grid grid-cols-2 pb-8">
-            <div class="flex flex-col">
+        <div class="flex justify-items-stretch pb-8 px-16">
+            <div class="flex flex-col justify-self-start w-1/2">
                 <img src="{% static 'img/logo.png' %}" alt="" width="80px" style="border-radius: 7px;">
                 <h1 class="text-2xl text-orange-500 mt-4">TO:</h1>
                 <p>{{ data.company_name }}</p>
                 <p>{{ data.company_location }}</p>
             </div>
-            <div class="flex flex-col text-right">
+            <div class="flex flex-col text-right w-1/2">
                 <ul>
                     <li style="font-size: 10px;">Orange Visual Effects Limited</li>
                     <li style="font-size: 10px;">36 Ajose Street, Lawanson Surulere, Lagos, Nigeria</li>
@@ -59,7 +58,7 @@
 
         <h1 class="uppercase font-bold my-6 text-center text-sm uppercase">{{ data.invoice_title }}</h1>
 
-        <div class="flex justify-center relative overflow-x-auto mx-5">
+        <div class="flex justify-center relative overflow-x-auto px-16">
             <table class="w-full text-xs text-left rtl:text-right dark:text-gray-400">
                 <thead class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <tr>
@@ -90,7 +89,7 @@
                         </td>
                     </tr>
             
-                    {% if include_data.moodboard == "true" %}
+                    {% if include_data.moodboard == True %}
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="border-2 border-solid font-medium whitespace-nowrap dark:text-white">
 
@@ -110,7 +109,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.illustration == "true" %}
+                    {% if include_data.illustration == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
@@ -130,7 +129,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.storyboard == "true" %}
+                    {% if include_data.storyboard == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
@@ -185,7 +184,7 @@
                         </td>
                     </tr>
 
-                    {% if include_data.modelling == "true" %}
+                    {% if include_data.modelling == True %}
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="border-2 border-solid font-medium whitespace-nowrap dark:text-white">
 
@@ -205,7 +204,7 @@
                     {% endif %}
 
 
-                    {% if include_data.texturing == "true" %}
+                    {% if include_data.texturing == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
@@ -225,7 +224,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.rigging == "true" %}
+                    {% if include_data.rigging == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
@@ -236,7 +235,7 @@
                         </td>
 
                         <td class="border-2 border-solid px-6 text-right">
-                            {% if data.rigging_price != 0.00 %}                   
+                            {% if data.rigging_price != "0.0" %}                   
                                 {{ data.rigging_price|floatformat:"2"|intcomma }}
                             {% else %}
                                 FREE
@@ -245,7 +244,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.lookdev == "true" %}
+                    {% if include_data.lookdev == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -265,7 +264,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.layout == "true" %}
+                    {% if include_data.layout == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -285,7 +284,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.animation == "true" %}
+                    {% if include_data.animation == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -296,7 +295,7 @@
                         </td>
 
                         <td class="border-2 border-solid px-6 text-right">
-                            {% if data.animation_price != 0.0 %}                   
+                            {% if data.animation_price != "0.0" %}                   
                                 {{ data.animation_price|floatformat:"2"|intcomma }}
                             {% else %}
                                 FREE
@@ -306,7 +305,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.fx == "true" %}
+                    {% if include_data.fx == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -326,7 +325,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.lighting == "true" %}
+                    {% if include_data.lighting == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -396,7 +395,7 @@
                         </td>
                     </tr>
 
-                    {% if include_data.editing == "true" %}
+                    {% if include_data.editing == True %}
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium whitespace-nowrap dark:text-white">
@@ -416,7 +415,7 @@
                     </tr>
                     {% endif %}
 
-                    {% if include_data.compositing == "true" %}
+                    {% if include_data.compositing == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -437,7 +436,7 @@
                     {% endif %}
 
 
-                    {% if include_data.motion == "true" %}
+                    {% if include_data.motion == True %}
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row"
                             class="border-2 border-solid px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -641,25 +640,25 @@
             </table>
         </div>
 
-        <div class="text-gray-700 text-right py-8">
+        <div class="text-gray-700 text-right py-8 px-16">
             <h1 class="text-2xl font-bold">Total Cost: ₦{{ data.final_cost|floatformat:"2"|intcomma }}</h1>
             <p style="font-size: 10px;">{{ cost_in_words|capfirst }} Naira</p>
         </div>
 
 
-        <ul class="pb-8">
+        <ul class="pb-8 px-16">
             <li><span class="text-orange-500 font-bold">Payment Methods:</span> Cash, Cheque, Transfer</li>
             <li>Account Name: ORANGE VISUAL EFFECTS LIMITED</li>
             <li>GTBank: 0260239078 (Naira) Sort Code: 058152094</li>
             <li>Tax Identification Number 20557467-0001</li>
         </ul>
 
-        <div class="flex flex-col justify-center pb-2">
+        <div class="flex flex-col justify-center pb-2 px-10">
             <h1 class="text-2xl font-bold text-left pb-4 text-orange-500">Thank you for your business</h1>
-            <p style="font-size: 10px; width: 750px; line-height: 12px;"><b>TERMS:</b> This document is valid for 30 days. We kindly request a
-                minimum prepayment of 30% to start the project. The remaining balance will be divided into
-                instalments, invoiced upon the
-                completion of specific milestones and the delivery of the final video. All scripts must be finalized
+            <p style="font-size: 10px; line-height: 12px;" class="text-xs w-full"><b>TERMS:</b> This document is valid for 30 days. 
+                We kindly request a minimum prepayment of 30% to start the project. The remaining balance will be divided into
+                instalments, invoiced upon the completion of specific milestones and the delivery of the final video. 
+                All scripts must be finalized
                 and approved in writing or by email before work can begin. Once a script is approved and production
                 has commenced, further changes/additions might incur extra costs and affect the delivery timelines
                 according to the required work. The first, second and third cuts will be rendered low at 960 by 540
@@ -669,11 +668,13 @@
                 extra cost.</p>
         </div>
 
-        <div style="width: 800px; height: 34px; background-color: #ff7f00;">
+        <div style="height: 34px; background-color: #ff7f00;" class="w-full">
 
         </div>
 
 
+    
+    </div>
     </div>
 
 
