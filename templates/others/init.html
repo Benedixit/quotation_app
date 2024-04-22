@@ -1,6 +1,6 @@
 <div class="initialize flex-col flex bg-green-200 p-24">
   <div class="my-4">
-    <h1 class="text-2xl font-bold text-red-600">Hello, There!!</h1>
+    <h1 class="text-2xl font-bold text-red-600">Hello, {{ request.user|capfirst }}</h1>
   </div>
 
   <div class="initialize_sub flex flex-col gap-y-4">

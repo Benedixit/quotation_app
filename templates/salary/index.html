@@ -1,0 +1,62 @@
+{% extends 'others/base.html' %} 
+{% load humanize %}
+{% block title %} Edit Salaries {% endblock %}
+{% block content %} 
+{% include "others/navbar.html" %}
+
+
+<div class="flex justify-center px-24 pb-32 pt-16">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 summary_table">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-400 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              ID
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+               Task
+              </th>
+    
+            <th scope="col" class="px-6 py-3">
+              Salary
+            </th>
+
+            <th scope="col" class="px-6 py-3">
+                
+            </th>
+
+        
+          </tr>
+        </thead>
+        <tbody>
+            {% for salary in salaries %}
+            <tr class="bg-white border-b">
+                <th scope="row" class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{ salary.id }}
+                </th>
+
+                <th scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ salary.task }}
+                  </th>
+
+                  <th scope="row" class="px-6 py-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ salary.salary }}
+                  </th>
+
+
+                  <th scope="row" class="px-6 py-4 text-sm text-gray-900 font-normal whitespace-nowrap dark:text-white">
+                    <a href="{% url 'accounts:edit_salary' salary.id %}" class="hover:text-blue-500 text-orange-500">Edit</a>
+                  </th>
+
+
+
+        
+              </tr>
+            {% endfor %}
+         
+        <tfoot class="bg-white dark:bg-gray-800 border-b bg-gray-200">
+        </tfoot>
+      </table>
+</div>
+{% include "others/footer.html" %}
+{% endblock %} 

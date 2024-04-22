@@ -1,23 +1,29 @@
 {% extends 'others/base.html' %} 
+{% block title %}Create New Invoice{% endblock %}
 {% block content %} 
 {% include "others/navbar.html" %}
-<div class="flex flex-row gap-x-24 justify-center">
-  <div class="flex flex-col my-20">
+<div class="flex flex-row gap-x-24 justify-center pb-16 w-full px-24">
+  <div class="flex flex-col my-20 w-1/2">
     {% include "others/init.html" %} 
     {% include "tasks/preprod.html" %} 
     {% include "tasks/prod.html" %} 
     {% include "tasks/postprod.html" %} 
     {% include "tasks/voice.html" %} 
     {% include "others/invoice_detail.html" %}
+    <div id="invoice_ids_" data-invoiceids="{{ invoice_ids|safe }}"></div>
   </div>
 
-  <div class="summary my-20"></div>
+  <div class="summary my-20 w-1/2">
+    
+  </div>
 </div>
 {% include "others/footer.html" %}
 {% endblock %} 
 {% block script_block %}
 <script>
   $(document).ready(() => {
+    const invoice_ids = $('#invoice_ids_').data('invoiceids');
+   
     $(".form-input").change(() => {
       calculateCost();
     });
@@ -31,9 +37,50 @@
     };
 
     $('.invoice_detail_next').click(()=>{
-      $('.end_of_line').removeClass('hidden');
-      $('.summary_table').addClass('hidden');
-      $('.invoice_detail_next').addClass('hidden');
+
+      if ($('#invoice_id').val() != '' &&
+          $('#invoice_title').val() != '' &&
+          $('#invoice_date').val() != '' &&
+          $('#company_name').val() != '' &&
+          $('company_location').val() != '' &&
+          !invoice_ids.includes($('#invoice_id').val())) {
+            $('.end_of_line').removeClass('hidden')
+            $('.summary_table').addClass('hidden')
+      }
+
+      
+      
+
+     
+      if ($('#invoice_id').val() == '') {
+        $('.invoice_id_error').text('Invoice ID Required')
+      }  else if (invoice_ids.includes($('#invoice_id').val())) {
+        $('.invoice_id_error').text('Invoice ID Already Used')
+      } else {
+        $('.invoice_id_error').text('')
+      }
+
+      if ($('#invoice_title').val() == '') {
+        $('.invoice_title_error').text('Invoice Title Required')
+      } else {
+        $('.invoice_title_error').text('')
+       }
+
+      if ($('#company_name').val() == '') {
+        $('.company_name_error').text('Company Name Required')
+      } else {
+        $('.company_name_error').text('')
+      }
+
+      if ($('#company_location').val() == '') {
+        $('.company_location_error').text('Company Name Required')
+      } else {
+        $('.company_location_error').text('')
+      }
+
+
+      console.log(values)
+      
     })
 
     $('.invoice_detail_prev').click(() => {

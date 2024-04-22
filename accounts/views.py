@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.urls import reverse
-from .models import Salaries, PriceDetail, PriceInclude
-from .forms import RegistrationForm, PriceDetailForm
+from .models import Salaries, PriceDetail, PriceInclude, Cost
+from .forms import RegistrationForm, PriceDetailForm, SalaryForm, CostForm
 from django.contrib.auth import authenticate, login, logout
 from num2words import num2words
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -17,7 +16,12 @@ def home(request):
 
 @login_required()
 def create_invoice(request):
-    return render(request, 'invoice/create.html')
+    prices = PriceDetail.objects.all()
+    invoice_ids = []
+    for price in prices:
+        invoice_ids.append(price.invoice_id)
+    print(invoice_ids)
+    return render(request, 'invoice/create.html', {'invoice_ids': invoice_ids})
 
 @login_required()
 def edit_invoice(request, pk):
@@ -31,6 +35,39 @@ def edit_invoice(request, pk):
         form = PriceDetailForm(instance=instance)
     
     return render(request, 'invoice/edit.html', {'form': form})
+
+@login_required()
+def salary_view(request):
+    salaries = Salaries.objects.all().order_by('id').values()
+    return render(request, 'salary/index.html', {'salaries': salaries})
+
+
+
+def edit_salary(request, pk):
+    instance = get_object_or_404(Salaries, pk=pk)
+    if request.method == 'POST':
+        form = SalaryForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/salaries')
+    else:
+        form = SalaryForm(instance=instance)
+    
+    return render(request, 'salary/edit.html', {'form': form})
+
+
+def edit_cost(request, pk):
+    instance = get_object_or_404(Cost, pk=pk)
+    if request.method == 'POST':
+        form = CostForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = CostForm(instance=instance)
+    
+    return render(request, 'others/edit_cost.html', {'form': form})
+
 
 
 @login_required()
@@ -198,9 +235,17 @@ def summary(request):
 
         total_salary = sum(labor_cost.values())
         total_days = request.GET.get('production_days')
+
+        if not Cost.objects.filter(pk=1).exists():
+            Cost.objects.create(overhead_cost=153796.77)
+
+        
+            
+        overhead_cost = float(Cost.objects.get(id=1).overhead_cost)
+        
         
         if total_days != 0:
-            overhead = 153796.77 * float(total_days)
+            overhead = overhead_cost * float(total_days)
         else:
             overhead = 0.00
         
@@ -488,6 +533,9 @@ def user_registration(request):
                 return redirect(reverse('accounts:home'))
         
     return render(request, 'auth/registration.html', {'form': form})
+
+
+
 
 
 def user_login(request):

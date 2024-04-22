@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import CustomUser
-from .models import PriceDetail
+from .models import CustomUser, PriceDetail, Salaries, Cost
 from django import forms
 
 class RegistrationForm(UserCreationForm):
@@ -24,6 +23,25 @@ class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+class SalaryForm(forms.ModelForm):
+    class Meta:
+        model = Salaries
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'})
+
+class CostForm(forms.ModelForm):
+    class Meta:
+        model = Cost
+        fields = "__all__"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'})
 
 class PriceDetailForm(forms.ModelForm):
     class Meta:

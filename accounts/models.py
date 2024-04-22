@@ -1,9 +1,18 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+from django.core.exceptions import ValidationError
 
 class Cost(models.Model):
     overhead_cost = models.DecimalField(max_digits=15, decimal_places=2)
+
+    def save(self, *args, **kwargs):
+       if not self.pk and Cost.objects.exists():
+           raise ValidationError('There is can be only one Cost instance')
+       return super(Cost, self).save(*args, **kwargs)
+    
+    def __str__(self):
+       return f'{self.overhead_cost}'
 
 class Salaries(models.Model):
     salary = models.DecimalField(max_digits=15, decimal_places=2, default=None)

@@ -41,7 +41,7 @@ TAILWINDCSS_OUTPUT_FILE = 'style.css'
 # Application definition
 
 INSTALLED_APPS = [
-    #'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -67,9 +67,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'quote.urls'
 
-
 AUTHENTICATION_BACKENDS = [
-    'accounts.authentication.CustomAuthBackend'
+    'accounts.authentication.CustomAuthBackend',
+    
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'

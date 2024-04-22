@@ -3,6 +3,8 @@
   <h1 class="text-3xl font-bold text-red-600">Invoice Details</h1>
   <div class="flex flex-col gap-y-4">
 
+    <div class="flex flex-row gap-x-4">
+
     <div class="flex flex-col gap-y-2">
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="invoice_id">
@@ -10,7 +12,7 @@
         </label>
         <input name="invoice_id" id="invoice_id" class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
       leading-tight focus:outline-none focus:shadow-outline" type="text" />
-
+      <span class="invoice_id_error mt-4 text-red-500 italic"></span>
       </div>
     </div>
 
@@ -19,11 +21,13 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="company_name">
           Company Name
         </label>
-        <input name="company_name" placeholder="Company Name" id="company_name"
+        <input name="company_name" id="company_name"
           class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text" />
+        <span class="company_name_error mt-4 text-red-500 italic"></span>
       </div>
     </div>
+  </div>
 
 
     <div class="flex flex-col gap-y-2">
@@ -34,6 +38,7 @@
         <input name="company_location" id="company_location"
           class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text" />
+        <span class="company_location_error mt-4 text-red-500 italic"></span>
       </div>
     </div>
 
@@ -43,18 +48,39 @@
           Invoice Title
         </label>
 
-        <input name="invoice_title" placeholder="Invoice Title" id="invoice_title" class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
+        <input name="invoice_title" id="invoice_title" class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
       leading-tight focus:outline-none focus:shadow-outline" type="text" />
-      </div>
+      <span class="invoice_title_error mt-4 text-red-500 italic"></span>
+    </div>
     </div>
 
+    <div class="flex flex-col gap-y-2">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="invoice_title">
+          Invoice Date
+        </label>
+   
+
+        <input name="invoice_date" id="invoice_date" class="form-input shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 
+      leading-tight focus:outline-none focus:shadow-outline" type="date" />
+      <span class="invoice_date_error mt-4 text-red-500 italic"></span>  
+    </div>
+    </div>
+
+    <div class="flex flex-col gap-y-2">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="invoice_title">
+          Select Invoice Type
+        </label>
     <select id="invoice_type"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-      <option selected>Choose Invoice Type</option>
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+      dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       <option value="US">Proforma Invoice</option>
       <option value="CA">Invoice</option>
       <option value="FR">Quote</option>
     </select>
+    </div>
+    </div>
 
 
 
