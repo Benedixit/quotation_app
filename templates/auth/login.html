@@ -1,10 +1,20 @@
 {% extends 'others/base.html' %} 
-
+{% block title %} Login {% endblock %}
 {% block content %}
 {% include "others/navbar.html" %}
+{% if messages %}
+  <div class="p-4 mb-4 text-sm text-center text-green-800 
+  rounded-lg bg-green-50 dark:bg-gray-800 
+  dark:text-green-400" role="alert">
+    {% for message in messages %}
+      <span class="font-medium text-center">{{ message }}</span>
+    {% endfor %}
+  </div>
+{% endif %}
 
-<form class="max-w-sm mx-auto pt-12 h-[80vh]" method="POST">
-  <h1 class="mb-10 text-3xl font-bold text-red-500">Login</h1>
+
+<form class="max-w-sm mx-auto pt-12" method="POST">
+  <h1 class="mb-6 text-3xl font-bold text-red-500">Login</h1>
   {% csrf_token %}
   
     <div class="mb-4">
@@ -18,8 +28,15 @@
       <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
     </div>
 
-    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+    <button type="submit" class="text-white bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+    text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
+    dark:hover:bg-blue-700 focus:outline-none 
+    dark:focus:ring-blue-800">Submit</button>
+    <div class="text-orange-500 pt-2 text-sm">
+      <a href="/register">Don't Have An Account? Register With Us.</a>
+    </div>
 </form>
+
 
 {% include "others/footer.html" %}
 {% endblock %}

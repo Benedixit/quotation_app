@@ -1,4 +1,5 @@
-{% extends 'others/base.html' %} 
+{% extends 'others/base.html' %}
+{% load static %}
 {% block title %}Create New Invoice{% endblock %}
 {% block content %} 
 {% include "others/navbar.html" %}
@@ -20,6 +21,7 @@
 {% include "others/footer.html" %}
 {% endblock %} 
 {% block script_block %}
+<script src="{% static 'js/ajax-cache.js' %}"></script>
 <script>
   $(document).ready(() => {
     const invoice_ids = $('#invoice_ids_').data('invoiceids');
@@ -816,7 +818,6 @@
         data: prices,
         traditional: true,
         success: (data) => {
-          /**window.location.href = '{% url "accounts:success" %}'**/
           console.log(data);
         },
         error: (error) => {

@@ -15,7 +15,6 @@ urlpatterns = [
     path('invoice', v.get_invoice_data, name="get_invoice_data"),
     path('salaries', v.salary_view, name="salary_view"),
     path('salary/edit/<int:pk>', v.edit_salary, name="edit_salary"),
-    path('success', v.success, name="success"),
     path('login', v.user_login, name="login"),
     path('register', v.user_registration, name="register"),
     path('logout', v.logout_view, name="logout")

@@ -3,7 +3,13 @@
 {% block title %} Edit Salaries {% endblock %}
 {% block content %} 
 {% include "others/navbar.html" %}
-
+{% if messages %}
+  <div class="p-4 text-center mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+    {% for message in messages %}
+      <span class="font-medium">{{ message }}</span>
+    {% endfor %}
+  </div>
+{% endif %}
 
 <div class="flex justify-center px-24 pb-32 pt-16">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 summary_table">

@@ -5,6 +5,7 @@ from .forms import RegistrationForm, PriceDetailForm, SalaryForm, CostForm
 from django.contrib.auth import authenticate, login, logout
 from num2words import num2words
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 # Create your views here.
@@ -49,6 +50,7 @@ def edit_salary(request, pk):
         form = SalaryForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Salary Successfully Edited')
             return redirect('/salaries')
     else:
         form = SalaryForm(instance=instance)
@@ -62,7 +64,9 @@ def edit_cost(request, pk):
         form = CostForm(request.POST, instance=instance)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Daily Overhead Cost Is Successfully Edited')
             return redirect('/')
+
     else:
         form = CostForm(instance=instance)
     
@@ -486,6 +490,7 @@ def get_invoice_data(request):
         )
 
         includes.save()
+        messages.success(request, 'New Invoice Successfully Added')
         return redirect(reverse('accounts:home'))
     
 
@@ -505,6 +510,7 @@ def delete_invoice(request, pk):
     if request.method == 'POST':
         PriceInclude.objects.filter(price_detail=data).delete()
         data.delete()
+        messages.success(request, 'Invoice Deleted Successfully')
         return redirect(reverse('accounts:home'))
     return render(request, 'invoice/delete.html', {'data': data})
 
@@ -530,6 +536,7 @@ def user_registration(request):
             user = authenticate(username=username, password=password)
             if user is not None:      
                 login(request, user)
+                messages.success(request, 'You Have Been Successfully Registered')
                 return redirect(reverse('accounts:home'))
         
     return render(request, 'auth/registration.html', {'form': form})
@@ -556,7 +563,6 @@ def user_login(request):
     
 def logout_view(request):
     logout(request)
+    messages.success(request, 'You Have Been Logged Out')
     return redirect(reverse('accounts:login'))
 
-def success(request):
-    return render(request, 'success.html')

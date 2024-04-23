@@ -1,15 +1,17 @@
 {% load static %}
 {% load humanize %}
 
-<div class="summary">
-    <div class="end_of_line hidden rounded-lg bg-yellow-200">
-      <div class="space-y-4 p-4">
-        <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+
+
+<div class="summary h-full">
+    <div class="end_of_line hidden rounded-lg flex flex-col">
+      <div class="space-y-4 p-4 self-center">
+        <p class="text-base leading-relaxed text-white dark:text-gray-400">
           If everything is okay, you can click on the submit button. <br> However,
           you can go back to previous sections if you are unsure.
         </p>
       </div>
-      <form method="post" action="{% url 'accounts:get_invoice_data' %}">
+      <form method="post" class="self-center" action="{% url 'accounts:get_invoice_data' %}">
         {% csrf_token %}
         <input type="hidden" name="moodboard_price" value="{{ moodboard_price }}" id="moodboard_price" class="price">
         <input type="hidden" name="illustration_price" value="{{ illustration_price }}" id="illustration_price"
